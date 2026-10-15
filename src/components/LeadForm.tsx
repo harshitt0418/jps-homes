@@ -3,15 +3,15 @@ import { ArrowRight, CircleCheck as CheckCircle2, User, Phone, MessageSquare } f
 
 type LeadFormProps = {
   variant: "hero" | "contact";
-  onSubmit: (data: { name: string; phone: string; interest: string; message?: string }) => void;
+  onSubmit: (data: {
+    name: string;
+    phone: string;
+    interest: string;
+    message?: string;
+  }) => Promise<unknown>;
 };
 
-const interests = [
-  "Buying a home",
-  "Selling a property",
-  "Investing in plots",
-  "Renting",
-];
+const interests = ["Buying a home", "Selling a property", "Investing in plots", "Renting"];
 
 export function LeadForm({ variant, onSubmit }: LeadFormProps) {
   const [submitted, setSubmitted] = useState(false);
@@ -19,19 +19,29 @@ export function LeadForm({ variant, onSubmit }: LeadFormProps) {
   const [phone, setPhone] = useState("");
   const [interest, setInterest] = useState("");
   const [message, setMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!name || !phone || !interest) return;
-    onSubmit({ name, phone, interest, message: message || undefined });
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setName("");
-      setPhone("");
-      setInterest("");
-      setMessage("");
-    }, 3500);
+    setSubmitting(true);
+    setError("");
+    try {
+      await onSubmit({ name, phone, interest, message: message || undefined });
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setName("");
+        setPhone("");
+        setInterest("");
+        setMessage("");
+      }, 3500);
+    } catch {
+      setError("We could not send your request. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   /* ───────── Hero variant: glass card ───────── */
@@ -132,10 +142,12 @@ export function LeadForm({ variant, onSubmit }: LeadFormProps) {
 
         <button
           type="submit"
+          disabled={submitting}
           className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition-all hover:bg-primary/90 hover:shadow-xl"
         >
-          Request Callback <ArrowRight className="h-4 w-4" />
+          {submitting ? "Sending…" : "Request Callback"} <ArrowRight className="h-4 w-4" />
         </button>
+        {error && <p className="mt-2 text-xs text-red-200">{error}</p>}
       </form>
     );
   }
@@ -204,10 +216,12 @@ export function LeadForm({ variant, onSubmit }: LeadFormProps) {
         />
         <button
           type="submit"
+          disabled={submitting}
           className="w-full rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
         >
-          Request Callback
+          {submitting ? "Sending…" : "Request Callback"}
         </button>
+        {error && <p className="text-xs text-destructive">{error}</p>}
       </div>
     </form>
   );
