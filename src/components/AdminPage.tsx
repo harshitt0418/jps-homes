@@ -1,18 +1,9 @@
-import { useMemo, useState } from "react";
-import {
-  Lock,
-  Search,
-  Trash2,
-  Phone,
-  MapPin,
-  Calendar,
-  Download,
-  ArrowLeft,
-} from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Lock, Search, Trash2, Phone, MapPin, Calendar, Download, ArrowLeft } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 import type { Lead } from "@/hooks/use-leads";
-import { PASSWORD, useLeads } from "@/hooks/use-leads";
+import { useLeads } from "@/hooks/use-leads";
 
 function formatDate(iso: string): string {
   const d = new Date(iso);
@@ -26,14 +17,34 @@ function formatDate(iso: string): string {
 }
 
 export function AdminPage() {
-  const { leads, deleteLead, clearAll } = useLeads();
+  const { leads, deleteLead, clearAll, login, isAdmin, refresh } = useLeads();
   const [authed, setAuthed] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
   const [passInput, setPassInput] = useState("");
   const [passError, setPassError] = useState(false);
 
   const [search, setSearch] = useState("");
   const [filterInterest, setFilterInterest] = useState("all");
   const [filterSource, setFilterSource] = useState("all");
+
+  useEffect(() => {
+    let active = true;
+    void (async () => {
+      try {
+        const allowed = await isAdmin();
+        if (!active) return;
+        setAuthed(allowed);
+        if (allowed) await refresh();
+      } catch {
+        if (active) setAuthed(false);
+      } finally {
+        if (active) setCheckingSession(false);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [isAdmin, refresh]);
 
   const interestOptions = useMemo(() => {
     const set = new Set(leads.map((l) => l.interest));
@@ -57,11 +68,13 @@ export function AdminPage() {
     });
   }, [leads, search, filterInterest, filterSource]);
 
-  function handleLogin() {
-    if (passInput === PASSWORD) {
+  async function handleLogin() {
+    try {
+      await login(passInput);
       setAuthed(true);
       setPassError(false);
-    } else {
+      await refresh();
+    } catch {
       setPassError(true);
     }
   }
@@ -119,10 +132,11 @@ export function AdminPage() {
               <p className="mt-2 text-xs text-destructive">Incorrect password. Try again.</p>
             )}
             <button
-              onClick={handleLogin}
+              onClick={() => void handleLogin()}
+              disabled={checkingSession}
               className="mt-4 w-full rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Unlock Dashboard
+              {checkingSession ? "Checking…" : "Unlock Dashboard"}
             </button>
           </div>
           <Link
@@ -248,7 +262,7 @@ export function AdminPage() {
                     )}
                   </div>
                   <button
-                    onClick={() => deleteLead(lead.id)}
+                    onClick={() => void deleteLead(lead.id)}
                     className="rounded-md p-2 text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
                     aria-label="Delete lead"
                   >
@@ -263,12 +277,12 @@ export function AdminPage() {
         {/* Footer */}
         <div className="mt-8 flex items-center justify-between border-t border-border pt-4">
           <p className="text-xs text-muted-foreground">
-            {leads.length} total leads · stored in this browser
+            {leads.length} total leads · securely stored online
           </p>
           <button
             onClick={() => {
               if (confirm("Delete all leads? This cannot be undone.")) {
-                clearAll();
+                void clearAll();
               }
             }}
             className="text-xs font-medium text-destructive hover:underline"
