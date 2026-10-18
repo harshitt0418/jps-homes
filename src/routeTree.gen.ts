@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as ProjectsGroupSlugIndexRouteImport } from './routes/projects/$groupSlug/index'
@@ -18,6 +19,11 @@ import { Route as ProjectsGroupSlugProjectSlugRouteImport } from './routes/proje
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -44,6 +50,7 @@ const ProjectsGroupSlugProjectSlugRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/$groupSlug/$projectSlug': typeof ProjectsGroupSlugProjectSlugRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/projects': typeof ProjectsIndexRoute
   '/projects/$groupSlug/$projectSlug': typeof ProjectsGroupSlugProjectSlugRoute
@@ -59,6 +67,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/$groupSlug/$projectSlug': typeof ProjectsGroupSlugProjectSlugRoute
@@ -68,6 +77,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/admin'
     | '/projects/'
     | '/projects/$groupSlug/$projectSlug'
@@ -75,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/admin'
     | '/projects'
     | '/projects/$groupSlug/$projectSlug'
@@ -82,6 +93,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/admin'
     | '/projects/'
     | '/projects/$groupSlug/$projectSlug'
@@ -90,6 +102,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
   ProjectsGroupSlugProjectSlugRoute: typeof ProjectsGroupSlugProjectSlugRoute
@@ -103,6 +116,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -138,6 +158,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
   ProjectsGroupSlugProjectSlugRoute: ProjectsGroupSlugProjectSlugRoute,

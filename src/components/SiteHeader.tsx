@@ -27,6 +27,9 @@ export function SiteHeader() {
           <Link to="/" className="text-muted-foreground transition-colors hover:text-primary">
             Home
           </Link>
+          <Link to="/about" className="text-muted-foreground transition-colors hover:text-primary">
+            About
+          </Link>
           <a
             href="/#featured-collection"
             className="text-muted-foreground transition-colors hover:text-primary"
@@ -89,6 +92,13 @@ export function SiteHeader() {
               className="py-1 text-muted-foreground hover:text-primary"
             >
               Home
+            </Link>
+            <Link
+              to="/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-1 text-muted-foreground hover:text-primary"
+            >
+              About
             </Link>
             <a
               href="/#featured-collection"

@@ -26,6 +26,12 @@ describe("App routing", () => {
     expect(matches.at(-1)?.routeId).toBe("/admin");
   });
 
+  it("matches a page for /about", () => {
+    const matches = router.matchRoutes("/about");
+    expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
+    expect(matches.at(-1)?.routeId).toBe("/about");
+  });
+
   it("matches a page for /projects", () => {
     const matches = router.matchRoutes("/projects");
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);

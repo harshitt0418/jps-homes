@@ -67,6 +67,11 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
+                <Link to="/about" className="hover:text-primary">
+                  About Us
+                </Link>
+              </li>
+              <li>
                 <a href="/#featured-collection" className="hover:text-primary">
                   Featured Collection
                 </a>
