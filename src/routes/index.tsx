@@ -1,5 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MapPin, Phone, Mail, Building2, Hop as Home, Landmark, ShieldCheck, KeyRound, Handshake, ArrowRight, Lock } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Building2,
+  Hop as Home,
+  Landmark,
+  ShieldCheck,
+  KeyRound,
+  Handshake,
+  ArrowRight,
+  Lock,
+} from "lucide-react";
 
 import logoAsset from "@/assets/jps-logo.jpeg";
 import heroImg from "@/assets/hero.jpg";
@@ -38,188 +50,226 @@ const projects = [
   {
     name: "Palm Ville",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "palm-ville",
     location: "Sushant Golf City, Lucknow",
     type: "4 BHK villas",
     rera: "Phase details to confirm",
-    source:
-      "https://www.squareyards.com/lucknow-residential-property/ansal-api-palm-ville/48120/project",
     image: heroImg,
   },
   {
     name: "Akanksha Enclave",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "akanksha-enclave",
     location: "Sushant Golf City, Lucknow",
     type: "Residential · configuration to confirm",
     rera: "Confirm phase registration",
-    source: "https://www.thirdvendor.com/portfolio/ansal-api-akansha-enclave/",
     image: villaImg,
   },
   {
     name: "Serene Lakeview",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "serene-lakeview",
     location: "Sushant Golf City, Lucknow",
     type: "Residential · configuration to confirm",
     rera: "Confirm phase registration",
-    source: "https://www.rathiglobalrealty.com/ansal-serene-lakeview",
     image: towerImg,
   },
   {
     name: "Larchwood Villa",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "larchwood-villa",
     location: "Sushant Golf City, Lucknow",
     type: "Villas · configuration to confirm",
     rera: "Confirm phase registration",
-    source: "https://www.commonfloor.com/ansal-larchwood-villa-lucknow/povp-ulllx2",
     image: plotsImg,
   },
   {
     name: "Golf Vista",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "golf-vista",
     location: "Sushant Golf City, Lucknow",
     type: "Residential apartments",
     rera: "UPRERAPRJ5801 · verify current phase status",
-    source:
-      "https://www.up-rera.in/Projectsummary?IRSAHEB=D6PY3lyims8%3D&NPJ6RAme=1l4uItwMl94ChAP0nf31obwy1fcMcSdxxF+cP+ndQvY%3D&PaURJEMAN4=ZL9MNERkNdaYwfeqOz9YrnA%3D%3D&UI0aPA1ISD=leZx60cJ64c%3D&hfFlag=GL34ZTSSjlw%3D",
     image: hazratganjImg,
   },
   {
     name: "Golf Gateway",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "golf-gateway",
     location: "Sushant Golf City, Lucknow",
     type: "Residential apartments",
     rera: "UPRERAPRJ3331 · verify current phase status",
-    source: "https://uprera.azurewebsites.net/Frm_View_Project_Details.aspx?id=3331",
     image: golfCityImg,
   },
   {
     name: "Bliss Delight",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "bliss-delight",
     location: "Sushant Golf City, Lucknow",
     type: "Residential apartments",
     rera: "UPRERAPRJ4754 · confirm current status",
-    source:
-      "https://up-rera.in/Projectsummary?IRSAHEB=D6PY3lyims8%3D&NPJ6RAme=52tIwuAdn9%2F6vXVGQZ6np%2FLeIkAsf+Fnp%2FYvBsTFqJEETF5W+2eLWN7gLgx3xQ88hipm7PcEykU%3D&PaURJEMAN4=ZL9MNERkNda4UBBTeO5eHg%3D%3D&UI0aPA1ISD=DI6FN+4ZEbA%3D",
     image: heroImg,
   },
   {
     name: "Basera Enclave",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "basera-enclave",
     location: "Sushant Golf City, Lucknow",
     type: "Residential apartments · configuration to confirm",
     rera: "Confirm phase registration",
-    source: "https://houssed.com/lucknow/ansal-api/ansal-basera-enclave-4835",
     image: villaImg,
   },
   {
     name: "Celebrity Greens",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "celebrity-greens",
     location: "Sushant Golf City, Lucknow",
     type: "Residential apartments",
     rera: "UPRERAPRJ8838 / UPRERAPRJ3405 · check phase",
-    source:
-      "https://up-rera.in/Projectsummary?hfFlag=GL34ZTSSjlw%3D&IRSAHEB=D6PY3lyims8%3D&NPJ6RAme=qrx0mMaBZuSz3VsqG+HCRO4CrrfGAPph86TpaHgFZma8DIDpFsikfPYJW2VbbhRd%2Fl%2FsLHF%2Fphg%3D&PaURJEMAN4=ZL9MNERkNdbf2+oZ7dp03A%3D%3D&UI0aPA1ISD=diQlR%2FG5Zbo%3D",
     image: towerImg,
   },
   {
     name: "Celebrity Meadows",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "celebrity-meadows",
     location: "Sushant Golf City, Lucknow",
     type: "Residential apartments",
     rera: "UPRERAPRJ3206 / UPRERAPRJ5602 · check phase",
-    source:
-      "https://www.up-rera.in/Projectsummary?hfFlag=GL34ZTSSjlw%3D&IRSAHEB=D6PY3lyims8%3D&NPJ6RAme=qrx0mMaBZuSz3VsqG+HCRFbIz1d5sNBPUb%2FwA8f1%2Fx3eptFuIt1xLRIfKO%2FedoLs0PdEO4zsm+4%3D&PaURJEMAN4=ZL9MNERkNda4UBBTeO5eHg%3D%3D&UI0aPA1ISD=nXEuIrMYSvQ%3D",
     image: plotsImg,
   },
   {
     name: "Ansal Business Park 2",
     developer: "Ansal API",
+    groupSlug: "ansal-api",
+    projectSlug: "ansal-business-park-2",
     location: "Sushant Golf City, Lucknow",
     type: "Commercial development",
     rera: "Confirm registration and current status",
-    source: "https://ayanaprop.tech/rera-lucknow/ansal-projects/",
     image: hazratganjImg,
   },
   {
     name: "Omaxe Waterscapes",
     developer: "Omaxe",
+    groupSlug: "omaxe",
+    projectSlug: "omaxe-waterscapes",
     location: "Gomti Nagar Extension, Lucknow",
     type: "3 BHK · 3 BHK + servant",
     rera: "UPRERAPRJ1538 / UPRERAPRJ1263",
-    source: "https://www.omaxe.com/residential-property-in-lucknow/omaxe-waterscapes",
     image: golfCityImg,
   },
   {
     name: "Omaxe The Resort",
     developer: "Omaxe",
+    groupSlug: "omaxe",
+    projectSlug: "omaxe-the-resort",
     location: "Gomti Nagar Extension, Lucknow",
     type: "3 & 4 BHK residences · penthouses",
     rera: "UPRERAPRJ326163 · under construction",
     price: "₹2.79 Cr onwards*",
-    source: "https://www.omaxe.com/residential-property-in-lucknow/the-resort-1",
     image: villaImg,
   },
   {
     name: "Hazratganj Residency",
     developer: "Omaxe",
+    groupSlug: "omaxe",
+    projectSlug: "hazratganj-residency",
     location: "Gomti Nagar Extension, Lucknow",
     type: "1, 2 & 3 BHK · penthouses",
     rera: "UPRERAPRJ2050",
-    source: "https://www.omaxe.com/residential-property-in-lucknow/hazratganj-residency",
     image: hazratganjImg,
   },
   {
     name: "Omaxe Residency II",
     developer: "Omaxe",
+    groupSlug: "omaxe",
+    projectSlug: "omaxe-residency-ii",
     location: "Gomti Nagar Extension, Lucknow",
     type: "2 & 3 BHK · 3 BHK + servant",
     rera: "UPRERAPRJ1682 / UPRERAPRJ1720 / UPRERAPRJ368818",
-    source: "https://www.omaxe.com/residential-property-in-lucknow/omaxe-residency-ii",
     image: villaImg,
   },
   {
     name: "Omaxe Metro City · Cassia",
     developer: "Omaxe",
+    groupSlug: "omaxe",
+    projectSlug: "omaxe-metro-city",
     location: "Kalli Pashchim, Raebareli Road, Lucknow",
     type: "2 BHK + study to 4 BHK + servant",
     rera: "UPRERAPRJ344049/7/2024 · UPRERAPRJ166763/8/2024",
     price: "₹87 lakh onwards*",
-    source: "https://www.omaxe.com/residential-property-in-lucknow/cassia",
     image: towerImg,
   },
   {
     name: "Gomti Greens",
     developer: "Emaar India",
+    groupSlug: "emaar-india",
+    projectSlug: "gomti-greens-plots",
     location: "Gomti Nagar Extension, Lucknow",
     type: "Residential plots",
     rera: "UPRERAPRJ5635 · integrated township",
-    source: "https://in.emaar.com/en/properties/gomti-greens-plots/",
     image: plotsImg,
   },
   {
     name: "Elite Oasis",
     developer: "Emaar India",
+    groupSlug: "emaar-india",
+    projectSlug: "elite-oasis",
     location: "Gomti Greens, Sector 7, Lucknow",
     type: "3 & 4 BHK residences",
     rera: "UPRERAPRJ944123/02/2025",
-    source: "https://in.emaar.com/en/properties/elite-oasis/",
     image: heroImg,
   },
   {
     name: "Rishita Mulberry Heights",
     developer: "Rishita Developers",
+    groupSlug: "rishita-developers",
+    projectSlug: "rishita-mulberry-heights",
     location: "Sushant Golf City, Lucknow",
     type: "2 & 3 BHK apartments",
     rera: "Phases 1, 3 & 4: UPRERAPRJ357829 · UPRERAPRJ308470 · UPRERAPRJ192087",
-    source: "https://www.rishitagroup.in/rishita-mulberry-heights/",
+    price: "₹1.10 Cr onwards*",
     image: golfCityImg,
+  },
+  {
+    name: "Pintail Park City",
+    developer: "Pintail",
+    groupSlug: "pintail",
+    projectSlug: "pintail-park-city",
+    location: "Sultanpur Road, Lucknow",
+    type: "Plots & Luxury Villas",
+    rera: "UPRERAPRJ15457 · Integrated Township",
+    price: "₹1.16 Cr onwards*",
+    image: villaImg,
+  },
+  {
+    name: "Migsun Lucknow Central",
+    developer: "Migsun Group",
+    groupSlug: "migsun-group",
+    projectSlug: "migsun-lucknow-central",
+    location: "Amar Shaheed Path, Sushant Golf City, Lucknow",
+    type: "Commercial High-Street Retail & Studio Suites",
+    rera: "UPRERAPRJ589752/04/2024",
+    price: "₹9,990/sq.ft onwards*",
+    image: towerImg,
   },
   {
     name: "Gomti Green City",
     developer: "Shree Raj Infrahousing",
+    groupSlug: "shree-raj",
+    projectSlug: "gomti-green-city",
     location: "Kisan Path, near New Jail Road, Lucknow",
     type: "Residential plots",
     rera: "UPRERAPRJ17806",
-    source: "https://www.shreerajinfra.com/gomti-green-city/",
     image: plotsImg,
   },
 ];
@@ -278,11 +328,17 @@ function Index() {
             </div>
           </a>
           <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+            <Link
+              to="/projects"
+              className="text-muted-foreground transition-colors hover:text-primary"
+            >
+              Projects Catalogue
+            </Link>
             <a
               href="#projects"
               className="text-muted-foreground transition-colors hover:text-primary"
             >
-              Projects
+              Featured
             </a>
             <a
               href="#locations"
@@ -393,10 +449,19 @@ function Index() {
                 Lucknow Projects to Explore
               </h2>
             </div>
-            <p className="max-w-md text-sm text-muted-foreground">
-              Browse developments from Lucknow builders. Ask JPS to confirm current availability and
-              pricing.
-            </p>
+            <div className="flex flex-col items-start gap-2 sm:items-end">
+              <p className="max-w-md text-sm text-muted-foreground">
+                Browse developments from Lucknow builders. Ask JPS to confirm current availability
+                and pricing.
+              </p>
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+              >
+                <span>Explore Developer Catalogue</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
           </div>
         </Reveal>
         <p className="mb-8 max-w-4xl border-l-2 border-primary pl-4 text-xs leading-relaxed text-muted-foreground">
@@ -410,9 +475,13 @@ function Index() {
             <Reveal key={p.name} delay={(i % 4) * 100} className="h-full">
               <article
                 key={p.name}
-                className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-lg"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-lg"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <Link
+                  to="/projects/$groupSlug/$projectSlug"
+                  params={{ groupSlug: p.groupSlug, projectSlug: p.projectSlug }}
+                  className="relative block aspect-[4/3] overflow-hidden"
+                >
                   <img
                     src={p.image}
                     alt={p.name}
@@ -427,26 +496,35 @@ function Index() {
                   <span className="absolute bottom-3 right-3 rounded bg-background/90 px-2 py-1 text-[10px] font-medium text-foreground">
                     Illustrative photo
                   </span>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-serif text-lg font-bold">{p.name}</h3>
-                  <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <MapPin className="h-3.5 w-3.5 text-primary" /> {p.location}
-                  </p>
-                  <p className="mt-2 text-sm font-medium">{p.type}</p>
-                  <p className="mt-3 min-h-9 text-xs text-muted-foreground">{p.rera}</p>
+                </Link>
+                <div className="flex flex-1 flex-col justify-between p-5">
+                  <div>
+                    <h3 className="font-serif text-lg font-bold">
+                      <Link
+                        to="/projects/$groupSlug/$projectSlug"
+                        params={{ groupSlug: p.groupSlug, projectSlug: p.projectSlug }}
+                        className="transition-colors hover:text-primary"
+                      >
+                        {p.name}
+                      </Link>
+                    </h3>
+                    <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <MapPin className="h-3.5 w-3.5 text-primary" /> {p.location}
+                    </p>
+                    <p className="mt-2 text-sm font-medium">{p.type}</p>
+                    <p className="mt-3 min-h-9 text-xs text-muted-foreground">{p.rera}</p>
+                  </div>
                   <div className="mt-4 flex items-center justify-between gap-3 border-t border-border pt-4">
                     <p className="font-serif text-base font-bold text-primary">
                       {p.price ?? "Price on request"}
                     </p>
-                    <a
-                      href={p.source}
-                      target="_blank"
-                      rel="noreferrer"
+                    <Link
+                      to="/projects/$groupSlug/$projectSlug"
+                      params={{ groupSlug: p.groupSlug, projectSlug: p.projectSlug }}
                       className="text-xs font-semibold text-primary hover:underline"
                     >
-                      Project details ↗
-                    </a>
+                      Project details →
+                    </Link>
                   </div>
                 </div>
               </article>
@@ -546,10 +624,7 @@ function Index() {
             </div>
           </Reveal>
           <Reveal delay={150}>
-            <LeadForm
-              variant="contact"
-              onSubmit={(d) => addLead({ ...d, source: "contact" })}
-            />
+            <LeadForm variant="contact" onSubmit={(d) => addLead({ ...d, source: "contact" })} />
           </Reveal>
         </div>
       </section>

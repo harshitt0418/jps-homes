@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as ProjectsGroupSlugIndexRouteImport } from './routes/projects/$groupSlug/index'
+import { Route as ProjectsGroupSlugProjectSlugRouteImport } from './routes/projects/$groupSlug/$projectSlug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +25,75 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsGroupSlugIndexRoute = ProjectsGroupSlugIndexRouteImport.update({
+  id: '/projects/$groupSlug/',
+  path: '/projects/$groupSlug/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsGroupSlugProjectSlugRoute =
+  ProjectsGroupSlugProjectSlugRouteImport.update({
+    id: '/projects/$groupSlug/$projectSlug',
+    path: '/projects/$groupSlug/$projectSlug',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/projects/$groupSlug/$projectSlug': typeof ProjectsGroupSlugProjectSlugRoute
+  '/projects/$groupSlug/': typeof ProjectsGroupSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/projects': typeof ProjectsIndexRoute
+  '/projects/$groupSlug/$projectSlug': typeof ProjectsGroupSlugProjectSlugRoute
+  '/projects/$groupSlug': typeof ProjectsGroupSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/projects/$groupSlug/$projectSlug': typeof ProjectsGroupSlugProjectSlugRoute
+  '/projects/$groupSlug/': typeof ProjectsGroupSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/projects/'
+    | '/projects/$groupSlug/$projectSlug'
+    | '/projects/$groupSlug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin'
-  id: '__root__' | '/' | '/admin'
+  to:
+    | '/'
+    | '/admin'
+    | '/projects'
+    | '/projects/$groupSlug/$projectSlug'
+    | '/projects/$groupSlug'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/projects/'
+    | '/projects/$groupSlug/$projectSlug'
+    | '/projects/$groupSlug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
+  ProjectsGroupSlugProjectSlugRoute: typeof ProjectsGroupSlugProjectSlugRoute
+  ProjectsGroupSlugIndexRoute: typeof ProjectsGroupSlugIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +112,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$groupSlug/': {
+      id: '/projects/$groupSlug/'
+      path: '/projects/$groupSlug'
+      fullPath: '/projects/$groupSlug/'
+      preLoaderRoute: typeof ProjectsGroupSlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$groupSlug/$projectSlug': {
+      id: '/projects/$groupSlug/$projectSlug'
+      path: '/projects/$groupSlug/$projectSlug'
+      fullPath: '/projects/$groupSlug/$projectSlug'
+      preLoaderRoute: typeof ProjectsGroupSlugProjectSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
+  ProjectsGroupSlugProjectSlugRoute: ProjectsGroupSlugProjectSlugRoute,
+  ProjectsGroupSlugIndexRoute: ProjectsGroupSlugIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
