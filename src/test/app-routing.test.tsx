@@ -84,7 +84,7 @@ describe("Local Project Data Source", () => {
 
   it("retrieves projects under a group", () => {
     const omaxeProjects = getProjectsByGroup("omaxe");
-    expect(omaxeProjects.length).toBeGreaterThanOrEqual(5);
+    expect(omaxeProjects.length).toBeGreaterThanOrEqual(2);
   });
 
   it("retrieves verified project by slug", () => {

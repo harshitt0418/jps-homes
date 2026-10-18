@@ -388,6 +388,35 @@ function ProjectDetailPage() {
               </section>
             )}
 
+            {/* Location & Layout Map Section */}
+            {project.locationMapImage && (
+              <section className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <h2 className="font-serif text-2xl font-bold">Location & Layout Map</h2>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Official geographical location plan and layout map archived from first-party
+                  developer filings.
+                </p>
+
+                <div className="mt-6 overflow-hidden rounded-xl border border-border bg-muted">
+                  <img
+                    src={project.locationMapImage.url}
+                    alt={project.locationMapImage.alt}
+                    className="max-h-[550px] w-full bg-white object-contain"
+                    loading="lazy"
+                  />
+                </div>
+
+                {project.locationMapImage.caption && (
+                  <p className="mt-2.5 text-center text-xs font-medium text-muted-foreground">
+                    {project.locationMapImage.caption}
+                  </p>
+                )}
+              </section>
+            )}
+
             {/* Amenities Section */}
             {project.amenities && project.amenities.length > 0 && (
               <section>
@@ -796,6 +825,27 @@ function ProjectDetailPage() {
                       </div>
                     ))}
                   </div>
+                </div>
+              )}
+
+              {/* Location Map Visual in Brochure */}
+              {project.locationMapImage && (
+                <div>
+                  <h4 className="font-serif text-base font-bold text-foreground">
+                    Location & Layout Map
+                  </h4>
+                  <div className="mt-2 overflow-hidden rounded-xl border border-border bg-muted">
+                    <img
+                      src={project.locationMapImage.url}
+                      alt={project.locationMapImage.alt}
+                      className="max-h-[350px] w-full bg-white object-contain"
+                    />
+                  </div>
+                  {project.locationMapImage.caption && (
+                    <p className="mt-1.5 text-center text-[11px] text-muted-foreground">
+                      {project.locationMapImage.caption}
+                    </p>
+                  )}
                 </div>
               )}
 
