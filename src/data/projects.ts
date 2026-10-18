@@ -435,12 +435,6 @@ export const PROJECTS: Project[] = [
         alt: "Rishita Serenity 4 BHK + SQ-Large Floor Plan 3452 sqft",
       },
     ],
-    locationMapImage: {
-      url: "/assets/projects/rishita-developers/rishita-serenity/location-map.png",
-      alt: "Rishita Serenity master site layout and location map in Sushant Golf City",
-      caption: "Official Master Layout & Location Plan",
-      isIllustrative: false,
-    },
     sourceUrls: ["https://rishitaserenity.co.in/", "https://www.up-rera.in/"],
     lastVerified: "2026-10-18",
   },
@@ -656,12 +650,6 @@ export const PROJECTS: Project[] = [
       caption: "Township Master Plan Layout",
       isIllustrative: false,
     },
-    locationMapImage: {
-      url: "/assets/projects/omaxe/omaxe-metro-city/location-map.jpg",
-      alt: "Omaxe Metro City layout and location map on Raebareli Road",
-      caption: "Official Township Location & Sector Map",
-      isIllustrative: false,
-    },
     sourceUrls: [
       "https://www.omaxelucknow.com/property/omaxe-metro-city-lucknow",
       "https://www.up-rera.in/",
@@ -745,12 +733,6 @@ export const PROJECTS: Project[] = [
         isIllustrative: false,
       },
     ],
-    locationMapImage: {
-      url: "/assets/projects/omaxe/omaxe-betogether/gallery-1.jpg",
-      alt: "Omaxe BeTogether prime Lucknow commercial locations map and layout",
-      caption: "Strategic Multi-Location Commercial Layout",
-      isIllustrative: false,
-    },
     sourceUrls: ["https://www.omaxebetogether.co/", "https://www.up-rera.in/"],
     lastVerified: "2026-10-18",
   },
@@ -937,12 +919,6 @@ export const PROJECTS: Project[] = [
         isIllustrative: false,
       },
     ],
-    locationMapImage: {
-      url: "/assets/projects/emaar-india/gomti-greens-plots/location-map.jpg",
-      alt: "Emaar Gomti Greens location map and satellite layout in Gomti Nagar Extension",
-      caption: "Official Location Map & Satellite Connectivity",
-      isIllustrative: false,
-    },
     sourceUrls: [
       "https://in.emaar.com/en/properties/gomti-greens-plots/",
       "https://www.up-rera.in/",
