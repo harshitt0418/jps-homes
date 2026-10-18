@@ -73,11 +73,12 @@ function ProjectNotFound() {
         </p>
         <div className="mt-6 flex justify-center gap-3">
           <Link
-            to="/projects"
+            to="/"
+            hash="featured-collection"
             className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>All Developers</span>
+            <span>Back to Featured Collection</span>
           </Link>
         </div>
       </div>
@@ -146,8 +147,8 @@ function ProjectDetailPage() {
             <span>Home</span>
           </Link>
           <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/60" />
-          <Link to="/projects" className="shrink-0 hover:text-primary">
-            Projects
+          <Link to="/" hash="featured-collection" className="shrink-0 hover:text-primary">
+            Featured Collection
           </Link>
           <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground/60" />
           <Link

@@ -59,11 +59,12 @@ function GroupNotFound() {
         </p>
         <div className="mt-6">
           <Link
-            to="/projects"
+            to="/"
+            hash="featured-collection"
             className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            <span>Back to All Developers</span>
+            <span>Back to Featured Collection</span>
           </Link>
         </div>
       </div>
@@ -87,8 +88,8 @@ function DeveloperGroupPage() {
             <span>Home</span>
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />
-          <Link to="/projects" className="hover:text-primary">
-            Projects
+          <Link to="/" hash="featured-collection" className="hover:text-primary">
+            Featured Collection
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/60" />
           <span className="font-semibold text-foreground">{group.name}</span>
@@ -169,11 +170,12 @@ function DeveloperGroupPage() {
                   Request Builder Price Sheet
                 </a>
                 <Link
-                  to="/projects"
+                  to="/"
+                  hash="featured-collection"
                   className="inline-flex w-full items-center justify-center rounded-xl border border-border bg-card px-4 py-2 text-xs font-medium text-foreground hover:bg-accent"
                 >
                   <ArrowLeft className="mr-1.5 h-3.5 w-3.5" />
-                  All Developers
+                  All Collections
                 </Link>
               </div>
 

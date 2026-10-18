@@ -15,14 +15,10 @@ import {
 
 import logoAsset from "@/assets/jps-logo.jpeg";
 import heroImg from "@/assets/hero.jpg";
-import villaImg from "@/assets/project-villa.jpg";
-import towerImg from "@/assets/project-tower.jpg";
-import plotsImg from "@/assets/project-plots.jpg";
-import hazratganjImg from "@/assets/project-hazratganj.jpg";
-import golfCityImg from "@/assets/project-golf-city.jpg";
 import { Reveal } from "@/components/Reveal";
 import { LeadForm } from "@/components/LeadForm";
 import { useLeads } from "@/hooks/use-leads";
+import { getAllGroups, getProjectsByGroup } from "@/data/projects";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -45,234 +41,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const projects = [
-  {
-    name: "Palm Ville",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "palm-ville",
-    location: "Sushant Golf City, Lucknow",
-    type: "4 BHK villas",
-    rera: "Phase details to confirm",
-    image: heroImg,
-  },
-  {
-    name: "Akanksha Enclave",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "akanksha-enclave",
-    location: "Sushant Golf City, Lucknow",
-    type: "Residential · configuration to confirm",
-    rera: "Confirm phase registration",
-    image: villaImg,
-  },
-  {
-    name: "Serene Lakeview",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "serene-lakeview",
-    location: "Sushant Golf City, Lucknow",
-    type: "Residential · configuration to confirm",
-    rera: "Confirm phase registration",
-    image: towerImg,
-  },
-  {
-    name: "Larchwood Villa",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "larchwood-villa",
-    location: "Sushant Golf City, Lucknow",
-    type: "Villas · configuration to confirm",
-    rera: "Confirm phase registration",
-    image: plotsImg,
-  },
-  {
-    name: "Golf Vista",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "golf-vista",
-    location: "Sushant Golf City, Lucknow",
-    type: "Residential apartments",
-    rera: "UPRERAPRJ5801 · verify current phase status",
-    image: hazratganjImg,
-  },
-  {
-    name: "Golf Gateway",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "golf-gateway",
-    location: "Sushant Golf City, Lucknow",
-    type: "Residential apartments",
-    rera: "UPRERAPRJ3331 · verify current phase status",
-    image: golfCityImg,
-  },
-  {
-    name: "Bliss Delight",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "bliss-delight",
-    location: "Sushant Golf City, Lucknow",
-    type: "Residential apartments",
-    rera: "UPRERAPRJ4754 · confirm current status",
-    image: heroImg,
-  },
-  {
-    name: "Basera Enclave",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "basera-enclave",
-    location: "Sushant Golf City, Lucknow",
-    type: "Residential apartments · configuration to confirm",
-    rera: "Confirm phase registration",
-    image: villaImg,
-  },
-  {
-    name: "Celebrity Greens",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "celebrity-greens",
-    location: "Sushant Golf City, Lucknow",
-    type: "Residential apartments",
-    rera: "UPRERAPRJ8838 / UPRERAPRJ3405 · check phase",
-    image: towerImg,
-  },
-  {
-    name: "Celebrity Meadows",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "celebrity-meadows",
-    location: "Sushant Golf City, Lucknow",
-    type: "Residential apartments",
-    rera: "UPRERAPRJ3206 / UPRERAPRJ5602 · check phase",
-    image: plotsImg,
-  },
-  {
-    name: "Ansal Business Park 2",
-    developer: "Ansal API",
-    groupSlug: "ansal-api",
-    projectSlug: "ansal-business-park-2",
-    location: "Sushant Golf City, Lucknow",
-    type: "Commercial development",
-    rera: "Confirm registration and current status",
-    image: hazratganjImg,
-  },
-  {
-    name: "Omaxe Waterscapes",
-    developer: "Omaxe",
-    groupSlug: "omaxe",
-    projectSlug: "omaxe-waterscapes",
-    location: "Gomti Nagar Extension, Lucknow",
-    type: "3 BHK · 3 BHK + servant",
-    rera: "UPRERAPRJ1538 / UPRERAPRJ1263",
-    image: golfCityImg,
-  },
-  {
-    name: "Omaxe The Resort",
-    developer: "Omaxe",
-    groupSlug: "omaxe",
-    projectSlug: "omaxe-the-resort",
-    location: "Gomti Nagar Extension, Lucknow",
-    type: "3 & 4 BHK residences · penthouses",
-    rera: "UPRERAPRJ326163 · under construction",
-    price: "₹2.79 Cr onwards*",
-    image: villaImg,
-  },
-  {
-    name: "Hazratganj Residency",
-    developer: "Omaxe",
-    groupSlug: "omaxe",
-    projectSlug: "hazratganj-residency",
-    location: "Gomti Nagar Extension, Lucknow",
-    type: "1, 2 & 3 BHK · penthouses",
-    rera: "UPRERAPRJ2050",
-    image: hazratganjImg,
-  },
-  {
-    name: "Omaxe Residency II",
-    developer: "Omaxe",
-    groupSlug: "omaxe",
-    projectSlug: "omaxe-residency-ii",
-    location: "Gomti Nagar Extension, Lucknow",
-    type: "2 & 3 BHK · 3 BHK + servant",
-    rera: "UPRERAPRJ1682 / UPRERAPRJ1720 / UPRERAPRJ368818",
-    image: villaImg,
-  },
-  {
-    name: "Omaxe Metro City · Cassia",
-    developer: "Omaxe",
-    groupSlug: "omaxe",
-    projectSlug: "omaxe-metro-city",
-    location: "Kalli Pashchim, Raebareli Road, Lucknow",
-    type: "2 BHK + study to 4 BHK + servant",
-    rera: "UPRERAPRJ344049/7/2024 · UPRERAPRJ166763/8/2024",
-    price: "₹87 lakh onwards*",
-    image: towerImg,
-  },
-  {
-    name: "Gomti Greens",
-    developer: "Emaar India",
-    groupSlug: "emaar-india",
-    projectSlug: "gomti-greens-plots",
-    location: "Gomti Nagar Extension, Lucknow",
-    type: "Residential plots",
-    rera: "UPRERAPRJ5635 · integrated township",
-    image: plotsImg,
-  },
-  {
-    name: "Elite Oasis",
-    developer: "Emaar India",
-    groupSlug: "emaar-india",
-    projectSlug: "elite-oasis",
-    location: "Gomti Greens, Sector 7, Lucknow",
-    type: "3 & 4 BHK residences",
-    rera: "UPRERAPRJ944123/02/2025",
-    image: heroImg,
-  },
-  {
-    name: "Rishita Mulberry Heights",
-    developer: "Rishita Developers",
-    groupSlug: "rishita-developers",
-    projectSlug: "rishita-mulberry-heights",
-    location: "Sushant Golf City, Lucknow",
-    type: "2 & 3 BHK apartments",
-    rera: "Phases 1, 3 & 4: UPRERAPRJ357829 · UPRERAPRJ308470 · UPRERAPRJ192087",
-    price: "₹1.10 Cr onwards*",
-    image: golfCityImg,
-  },
-  {
-    name: "Pintail Park City",
-    developer: "Pintail",
-    groupSlug: "pintail",
-    projectSlug: "pintail-park-city",
-    location: "Sultanpur Road, Lucknow",
-    type: "Plots & Luxury Villas",
-    rera: "UPRERAPRJ15457 · Integrated Township",
-    price: "₹1.16 Cr onwards*",
-    image: villaImg,
-  },
-  {
-    name: "Migsun Lucknow Central",
-    developer: "Migsun Group",
-    groupSlug: "migsun-group",
-    projectSlug: "migsun-lucknow-central",
-    location: "Amar Shaheed Path, Sushant Golf City, Lucknow",
-    type: "Commercial High-Street Retail & Studio Suites",
-    rera: "UPRERAPRJ589752/04/2024",
-    price: "₹9,990/sq.ft onwards*",
-    image: towerImg,
-  },
-  {
-    name: "Gomti Green City",
-    developer: "Shree Raj Infrahousing",
-    groupSlug: "shree-raj",
-    projectSlug: "gomti-green-city",
-    location: "Kisan Path, near New Jail Road, Lucknow",
-    type: "Residential plots",
-    rera: "UPRERAPRJ17806",
-    image: plotsImg,
-  },
-];
 
 const locations = [
   { name: "Gomti Nagar" },
@@ -310,6 +78,7 @@ const services = [
 
 function Index() {
   const { addLead } = useLeads();
+  const groups = getAllGroups();
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -328,17 +97,11 @@ function Index() {
             </div>
           </a>
           <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
-            <Link
-              to="/projects"
-              className="text-muted-foreground transition-colors hover:text-primary"
-            >
-              Projects Catalogue
-            </Link>
             <a
-              href="#projects"
+              href="#featured-collection"
               className="text-muted-foreground transition-colors hover:text-primary"
             >
-              Featured
+              Featured Collection
             </a>
             <a
               href="#locations"
@@ -413,10 +176,10 @@ function Index() {
               style={{ animationDelay: "450ms" }}
             >
               <a
-                href="#projects"
+                href="#featured-collection"
                 className="inline-flex items-center gap-2 rounded-md bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
               >
-                Explore Projects <ArrowRight className="h-4 w-4" />
+                Explore Featured Collection <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href="#contact"
@@ -437,99 +200,125 @@ function Index() {
         </div>
       </section>
 
-      {/* Projects */}
-      <section id="projects" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+      {/* Featured Collection */}
+      <section id="featured-collection" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+        <span id="projects" className="sr-only" />
         <Reveal>
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-                Featured Projects
+                Featured Collection
               </p>
               <h2 className="mt-2 font-serif text-3xl font-bold sm:text-4xl">
-                Lucknow Projects to Explore
+                Lucknow Developer Collections & Townships
               </h2>
             </div>
-            <div className="flex flex-col items-start gap-2 sm:items-end">
-              <p className="max-w-md text-sm text-muted-foreground">
-                Browse developments from Lucknow builders. Ask JPS to confirm current availability
-                and pricing.
-              </p>
-              <Link
-                to="/projects"
-                className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
-              >
-                <span>Explore Developer Catalogue</span>
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
+            <p className="max-w-md text-sm text-muted-foreground">
+              Browse verified real estate collections by developer groups and master townships
+              across Lucknow. Verified against first-party public records and UP-RERA.
+            </p>
           </div>
         </Reveal>
         <p className="mb-8 max-w-4xl border-l-2 border-primary pl-4 text-xs leading-relaxed text-muted-foreground">
-          Project details are summarized from developer, public RERA, and property-listing sources.
-          Registrations and possession timelines can vary by phase. Photos are illustrative, not
-          project-specific. *Price shown is the developer-listed starting price; confirm the current
-          offer.
+          Every collection brings together documented developments from that group. Click any
+          collection card to explore all associated properties, verified price lists, floor plans,
+          and UP-RERA phase registrations.
         </p>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {projects.map((p, i) => (
-            <Reveal key={p.name} delay={(i % 4) * 100} className="h-full">
-              <article
-                key={p.name}
-                className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-lg"
-              >
-                <Link
-                  to="/projects/$groupSlug/$projectSlug"
-                  params={{ groupSlug: p.groupSlug, projectSlug: p.projectSlug }}
-                  className="relative block aspect-[4/3] overflow-hidden"
-                >
-                  <img
-                    src={p.image}
-                    alt={p.name}
-                    loading="lazy"
-                    width={1024}
-                    height={768}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <span className="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold text-primary-foreground">
-                    {p.developer}
-                  </span>
-                  <span className="absolute bottom-3 right-3 rounded bg-background/90 px-2 py-1 text-[10px] font-medium text-foreground">
-                    Illustrative photo
-                  </span>
-                </Link>
-                <div className="flex flex-1 flex-col justify-between p-5">
-                  <div>
-                    <h3 className="font-serif text-lg font-bold">
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {groups.map((group, i) => {
+            const groupProjects = getProjectsByGroup(group.slug);
+
+            return (
+              <Reveal key={group.slug} delay={(i % 3) * 100} className="h-full">
+                <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl">
+                  {/* Cover Image & Logo */}
+                  <Link
+                    to="/projects/$groupSlug"
+                    params={{ groupSlug: group.slug }}
+                    className="relative block aspect-[16/9] w-full overflow-hidden bg-muted"
+                  >
+                    <img
+                      src={group.coverImage}
+                      alt={`${group.name} collection cover`}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+                    {/* Logo & Group Name overlay */}
+                    <div className="absolute bottom-3 left-4 flex items-center gap-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-white/95 p-1 shadow-lg backdrop-blur">
+                        <img
+                          src={group.logo}
+                          alt={`${group.name} logo`}
+                          className="max-h-full max-w-full object-contain"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-lg font-bold text-white drop-shadow">
+                          {group.name}
+                        </h3>
+                        {group.established && (
+                          <p className="text-[11px] text-white/80">Est. {group.established}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Project Count Badge */}
+                    <div className="absolute right-3 top-3 rounded-full bg-primary/95 px-3 py-1 text-xs font-semibold text-primary-foreground shadow-md backdrop-blur">
+                      {groupProjects.length} {groupProjects.length === 1 ? "Project" : "Projects"}
+                    </div>
+                  </Link>
+
+                  {/* Card Content */}
+                  <div className="flex flex-1 flex-col justify-between p-6">
+                    <div>
+                      <p className="line-clamp-3 text-xs leading-relaxed text-muted-foreground">
+                        {group.shortDescription}
+                      </p>
+
+                      {/* Featured Properties Pills */}
+                      <div className="mt-4 border-t border-border/60 pt-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                          Featured Properties:
+                        </p>
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {groupProjects.slice(0, 3).map((p) => (
+                            <Link
+                              key={p.projectSlug}
+                              to="/projects/$groupSlug/$projectSlug"
+                              params={{ groupSlug: group.slug, projectSlug: p.projectSlug }}
+                              className="inline-flex items-center rounded-md bg-secondary px-2 py-0.5 text-[11px] font-medium text-secondary-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                            >
+                              {p.name}
+                            </Link>
+                          ))}
+                          {groupProjects.length > 3 && (
+                            <span className="inline-flex items-center rounded-md bg-secondary px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                              +{groupProjects.length - 3} more
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Action CTA */}
+                    <div className="mt-6 border-t border-border pt-4">
                       <Link
-                        to="/projects/$groupSlug/$projectSlug"
-                        params={{ groupSlug: p.groupSlug, projectSlug: p.projectSlug }}
-                        className="transition-colors hover:text-primary"
+                        to="/projects/$groupSlug"
+                        params={{ groupSlug: group.slug }}
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
                       >
-                        {p.name}
+                        <span>Explore Collection ({groupProjects.length})</span>
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
-                    </h3>
-                    <p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <MapPin className="h-3.5 w-3.5 text-primary" /> {p.location}
-                    </p>
-                    <p className="mt-2 text-sm font-medium">{p.type}</p>
-                    <p className="mt-3 min-h-9 text-xs text-muted-foreground">{p.rera}</p>
-                  </div>
-                  <div className="mt-4 flex items-center justify-between gap-3 border-t border-border pt-4">
-                    <p className="font-serif text-base font-bold text-primary">
-                      {p.price ?? "Price on request"}
-                    </p>
-                    <Link
-                      to="/projects/$groupSlug/$projectSlug"
-                      params={{ groupSlug: p.groupSlug, projectSlug: p.projectSlug }}
-                      className="text-xs font-semibold text-primary hover:underline"
-                    >
-                      Project details →
-                    </Link>
+                    </div>
                   </div>
                 </div>
-              </article>
-            </Reveal>
-          ))}
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 

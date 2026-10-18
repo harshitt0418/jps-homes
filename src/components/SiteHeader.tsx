@@ -27,12 +27,12 @@ export function SiteHeader() {
           <Link to="/" className="text-muted-foreground transition-colors hover:text-primary">
             Home
           </Link>
-          <Link
-            to="/projects"
-            className="text-foreground font-semibold transition-colors hover:text-primary"
+          <a
+            href="/#featured-collection"
+            className="text-muted-foreground transition-colors hover:text-primary"
           >
-            Projects Catalogue
-          </Link>
+            Featured Collection
+          </a>
           <a
             href="/#locations"
             className="text-muted-foreground transition-colors hover:text-primary"
@@ -90,13 +90,13 @@ export function SiteHeader() {
             >
               Home
             </Link>
-            <Link
-              to="/projects"
+            <a
+              href="/#featured-collection"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-1 font-semibold text-primary"
+              className="py-1 text-muted-foreground hover:text-primary"
             >
-              Projects Catalogue
-            </Link>
+              Featured Collection
+            </a>
             <a
               href="/#locations"
               onClick={() => setMobileMenuOpen(false)}
