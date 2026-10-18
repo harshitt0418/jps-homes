@@ -10,13 +10,13 @@ import {
   KeyRound,
   Handshake,
   ArrowRight,
-  Lock,
 } from "lucide-react";
 
-import logoAsset from "@/assets/jps-logo.jpeg";
 import heroImg from "@/assets/hero.jpg";
 import { Reveal } from "@/components/Reveal";
 import { LeadForm } from "@/components/LeadForm";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { useLeads } from "@/hooks/use-leads";
 import { getAllGroups, getProjectsByGroup } from "@/data/projects";
 
@@ -82,63 +82,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-          <a href="#top" className="flex items-center gap-3">
-            <img
-              src={logoAsset}
-              alt="JPS Real Estates logo"
-              className="h-11 w-11 rounded-md object-cover"
-            />
-            <div className="leading-tight">
-              <p className="font-serif text-lg font-bold tracking-wide">JPS Real Estates</p>
-              <p className="text-xs text-muted-foreground">JPS Associate · Lucknow</p>
-            </div>
-          </a>
-          <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
-            <a
-              href="#featured-collection"
-              className="text-muted-foreground transition-colors hover:text-primary"
-            >
-              Featured Collection
-            </a>
-            <a
-              href="#locations"
-              className="text-muted-foreground transition-colors hover:text-primary"
-            >
-              Locations
-            </a>
-            <a
-              href="#services"
-              className="text-muted-foreground transition-colors hover:text-primary"
-            >
-              Services
-            </a>
-            <a
-              href="#contact"
-              className="text-muted-foreground transition-colors hover:text-primary"
-            >
-              Contact
-            </a>
-          </nav>
-          <div className="flex items-center gap-2">
-            <a
-              href="#contact"
-              className="hidden rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:inline-flex"
-            >
-              Book a Visit
-            </a>
-            <Link
-              to="/admin"
-              className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-2 text-xs font-medium text-muted-foreground transition-all hover:border-primary/50 hover:bg-accent hover:text-primary"
-            >
-              <Lock className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Admin</span>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Hero */}
       <section id="top" className="relative">
@@ -418,23 +362,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border bg-card">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:px-6">
-          <div className="flex items-center gap-3">
-            <img
-              src={logoAsset}
-              alt="JPS Real Estates logo"
-              className="h-9 w-9 rounded-md object-cover"
-              loading="lazy"
-            />
-            <p className="font-serif font-bold text-foreground">JPS Real Estates</p>
-          </div>
-          <p>
-            3/104 Viram Khand, Gomti Nagar, Lucknow · © {new Date().getFullYear()} JPS Real Estates
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
