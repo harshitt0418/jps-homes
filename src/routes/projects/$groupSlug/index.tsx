@@ -167,7 +167,7 @@ function DeveloperGroupPage() {
                   href="/#contact"
                   className="inline-flex w-full items-center justify-center rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
                 >
-                  Request Builder Price Sheet
+                  Request Developer Brochure
                 </a>
                 <Link
                   to="/"
@@ -242,8 +242,8 @@ function DeveloperGroupPage() {
             <span className="font-semibold text-foreground">Verification Note:</span> All details,
             including RERA phase numbers, unit configurations, and amenities for {group.name}, are
             transcribed directly from official developer public portals and UP-RERA filings. JPS
-            Real Estates does not alter official figures. Unverified pricing is omitted or shown on
-            direct request to protect customer integrity.
+            Real Estates does not alter official figures. Pricing is omitted in favor of direct
+            consultation with JPS Real Estates to protect customer integrity.
           </p>
         </div>
       </section>

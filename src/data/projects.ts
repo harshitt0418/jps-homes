@@ -16,11 +16,14 @@ export interface FloorPlanItem {
   alt: string;
 }
 
-export interface PriceDetail {
-  unitType: string;
-  price: string;
-  towerOrFloor?: string;
-  size?: string;
+export interface ProjectConnectivity {
+  landmark: string;
+  distanceOrTime: string;
+}
+
+export interface ProjectSpecification {
+  category: string;
+  details: string;
 }
 
 export interface Project {
@@ -33,13 +36,18 @@ export interface Project {
   category: ProjectCategory;
   configurations: string[];
   areaRanges?: string;
-  price?: string;
-  priceDetails?: PriceDetail[];
+  acreage?: string;
+  totalUnits?: string;
+  launchDate?: string;
+  possessionDate?: string;
   rera: string;
   status: string;
   overview: string;
   highlights: string[];
   amenities: string[];
+  connectivity?: ProjectConnectivity[];
+  specifications?: ProjectSpecification[];
+  brochureUrl?: string;
   heroImage: ProjectImage;
   galleryImages: ProjectImage[];
   floorPlans?: FloorPlanItem[];
@@ -184,15 +192,99 @@ export const PROJECTS: Project[] = [
       "3 BHK + SQ (C3 Tower)",
       "3 BHK + SQ-Large (B3 Tower)",
     ],
-    price: "₹1.10 Cr onwards*",
-    priceDetails: [
-      { unitType: "2 BHK", price: "₹1.10 Cr*", towerOrFloor: "E2 & E3 Towers" },
-      { unitType: "2 BHK", price: "₹1.12 Cr*", towerOrFloor: "D1 Tower" },
-      { unitType: "2 BHK", price: "₹1.12 Cr*", towerOrFloor: "D2 Tower" },
-      { unitType: "2 BHK + Store", price: "₹1.25 Cr*", towerOrFloor: "E2 & E3 Towers" },
-      { unitType: "3 BHK", price: "₹1.71 Cr*", towerOrFloor: "E3 Tower" },
-      { unitType: "3 BHK + SQ", price: "₹1.85 Cr*", towerOrFloor: "C3 Tower" },
-      { unitType: "3 BHK + SQ-Large", price: "₹2.34 Cr*", towerOrFloor: "B3 Tower" },
+    acreage: "21.45 Acres (80% open landscaped greens)",
+    totalUnits: "8 High-Rise Towers · 675+ Possessions Offered",
+    possessionDate: "Phase 1-4 Delivered · Phase 5 Ongoing Handover",
+    brochureUrl: "/brochures/rishita-mulberry-heights-brochure.pdf",
+    connectivity: [
+      { landmark: "Medanta Super Speciality Hospital", distanceOrTime: "3 mins (2.5 km)" },
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "5 mins (4.0 km)" },
+      { landmark: "Lulu Mall Lucknow", distanceOrTime: "4 mins (3.2 km)" },
+      { landmark: "Walmart Best Price Wholesale", distanceOrTime: "2 mins (1.5 km)" },
+      {
+        landmark: "Chaudhary Charan Singh International Airport",
+        distanceOrTime: "15 mins via Amar Shaheed Path",
+      },
+      { landmark: "Phoenix Palassio Mall", distanceOrTime: "6 mins" },
+      { landmark: "Charbagh Railway Station", distanceOrTime: "20 mins" },
+    ],
+    specifications: [
+      {
+        category: "Structure",
+        details: "Earthquake resistant RCC framed structure designed to seismic zone compliance",
+      },
+      {
+        category: "Flooring",
+        details:
+          "Vitrified tiles in drawing, dining & bedrooms; Anti-skid ceramic tiles in toilets & balconies; Wooden laminated flooring in master bedroom",
+      },
+      {
+        category: "Doors & Windows",
+        details:
+          "Hardwood door frames with European style flush doors; Anodized / powder-coated aluminum sliding windows",
+      },
+      {
+        category: "Kitchen",
+        details:
+          "Granite working counter with stainless steel sink; 2-ft ceramic tiles above counter",
+      },
+      {
+        category: "Electrical & Power",
+        details:
+          "Concealed copper wiring with modular switches; Provision for AC points in all rooms; 100% common area power backup",
+      },
+      {
+        category: "Security",
+        details:
+          "Gated 3-tier security with 24/7 CCTV surveillance, boom barriers, and biometric entrance access",
+      },
+    ],
+    acreage: "21.45 Acres (80% open landscaped greens)",
+    totalUnits: "8 High-Rise Towers · 675+ Possessions Offered",
+    possessionDate: "Phase 1-4 Delivered · Phase 5 Ongoing Handover",
+    brochureUrl: "/brochures/rishita-mulberry-heights-brochure.pdf",
+    connectivity: [
+      { landmark: "Medanta Super Speciality Hospital", distanceOrTime: "3 mins (2.5 km)" },
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "5 mins (4.0 km)" },
+      { landmark: "Lulu Mall Lucknow", distanceOrTime: "4 mins (3.2 km)" },
+      { landmark: "Walmart Best Price Wholesale", distanceOrTime: "2 mins (1.5 km)" },
+      {
+        landmark: "Chaudhary Charan Singh International Airport",
+        distanceOrTime: "15 mins via Amar Shaheed Path",
+      },
+      { landmark: "Phoenix Palassio Mall", distanceOrTime: "6 mins" },
+      { landmark: "Charbagh Railway Station", distanceOrTime: "20 mins" },
+    ],
+    specifications: [
+      {
+        category: "Structure",
+        details: "Earthquake resistant RCC framed structure designed to seismic zone compliance",
+      },
+      {
+        category: "Flooring",
+        details:
+          "Vitrified tiles in drawing, dining & bedrooms; Anti-skid ceramic tiles in toilets & balconies; Wooden laminated flooring in master bedroom",
+      },
+      {
+        category: "Doors & Windows",
+        details:
+          "Hardwood door frames with European style flush doors; Anodized / powder-coated aluminum sliding windows",
+      },
+      {
+        category: "Kitchen",
+        details:
+          "Granite working counter with stainless steel sink; 2-ft ceramic tiles above counter",
+      },
+      {
+        category: "Electrical & Power",
+        details:
+          "Concealed copper wiring with modular switches; Provision for AC points in all rooms; 100% common area power backup",
+      },
+      {
+        category: "Security",
+        details:
+          "Gated 3-tier security with 24/7 CCTV surveillance, boom barriers, and biometric entrance access",
+      },
     ],
     rera: "UPRERAPRJ357829 / UPRERAPRJ323529 / UPRERAPRJ308470 / UPRERAPRJ192087 / UPRERAPRJ626431 / UPRERAPRJ447396",
     status: "Ongoing · 675+ Possessions Offered",
@@ -276,11 +368,85 @@ export const PROJECTS: Project[] = [
     category: "Apartments",
     configurations: ["3 BHK + SQ", "4 BHK + SQ", "4 BHK + SQ + ST"],
     areaRanges: "2,586 sq. ft. to 3,500+ sq. ft.",
-    price: "₹3.10 Cr onwards*",
-    priceDetails: [
-      { unitType: "3 BHK + SQ", price: "₹3.10 Cr.*", size: "3,035 Sq.Ft." },
-      { unitType: "4 BHK + SQ", price: "₹3.55 Cr.*", size: "3,431 Sq.Ft." },
-      { unitType: "4 BHK + SQ", price: "₹4.15 Cr.*", size: "3,452 Sq.Ft." },
+    acreage: "21.45 Acres",
+    launchDate: "19-06-2025",
+    possessionDate: "Under Active Construction (Scheduled Delivery)",
+    brochureUrl: "/brochures/rishita-serenity-brochure.pdf",
+    connectivity: [
+      {
+        landmark: "Sushant Golf City 18-Hole Championship Golf Course",
+        distanceOrTime: "Overlooking Golf Course",
+      },
+      { landmark: "Medanta Super Speciality Hospital", distanceOrTime: "4 mins" },
+      { landmark: "Lulu Mall Lucknow", distanceOrTime: "5 mins" },
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "5 mins" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "15 mins" },
+      { landmark: "Amar Shaheed Path Corridor", distanceOrTime: "Direct Access" },
+    ],
+    specifications: [
+      {
+        category: "Architectural Concept",
+        details:
+          "Biophilic architectural design featuring cantilevered sky terraces, expansive balconies, and panoramic golf greens",
+      },
+      {
+        category: "Lobby & Entrances",
+        details: "Triple-height air-conditioned designer entrance lobby with 5-star concierge desk",
+      },
+      {
+        category: "Lifts & Circulation",
+        details:
+          "High-speed automated passenger elevators with separate dedicated service/stretcher elevator",
+      },
+      {
+        category: "Clubhouse & Leisure",
+        details:
+          "Exclusive clubhouse with temperature-controlled indoor pool, rooftop infinity pool, and spa",
+      },
+      {
+        category: "Eco Features",
+        details: "Rainwater harvesting, solar lighting in common areas, and EV fast-charging bays",
+      },
+    ],
+    acreage: "21.45 Acres",
+    launchDate: "19-06-2025",
+    possessionDate: "Under Active Construction (Scheduled Delivery)",
+    brochureUrl: "/brochures/rishita-serenity-brochure.pdf",
+    connectivity: [
+      {
+        landmark: "Sushant Golf City 18-Hole Championship Golf Course",
+        distanceOrTime: "Overlooking Golf Course",
+      },
+      { landmark: "Medanta Super Speciality Hospital", distanceOrTime: "4 mins" },
+      { landmark: "Lulu Mall Lucknow", distanceOrTime: "5 mins" },
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "5 mins" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "15 mins" },
+      { landmark: "Amar Shaheed Path Corridor", distanceOrTime: "Direct Access" },
+    ],
+    specifications: [
+      {
+        category: "Architectural Concept",
+        details:
+          "Biophilic architectural design featuring cantilevered sky terraces, expansive balconies, and panoramic golf greens",
+      },
+      {
+        category: "Lobby & Entrances",
+        details: "Triple-height air-conditioned designer entrance lobby with 5-star concierge desk",
+      },
+      {
+        category: "Lifts & Circulation",
+        details:
+          "High-speed automated passenger elevators with separate dedicated service/stretcher elevator",
+      },
+      {
+        category: "Clubhouse & Leisure",
+        details:
+          "Exclusive clubhouse with temperature-controlled indoor pool, rooftop infinity pool, and spa",
+      },
+      {
+        category: "Eco Features",
+        details: "Rainwater harvesting, solar lighting in common areas, and EV fast-charging bays",
+      },
     ],
     rera: "UPRERAPRJ351436/06/2025",
     status: "Under Construction · Ongoing",
@@ -372,8 +538,70 @@ export const PROJECTS: Project[] = [
     address: "Omaxe World, Sector-7, Gomti Nagar Extension, Lucknow, Uttar Pradesh (India)",
     category: "Apartments",
     configurations: ["2 BHK", "3 BHK", "4 BHK"],
-    price: "₹2.08 Cr onwards*",
-    priceDetails: [{ unitType: "4 BHK (C2 Tower)", price: "₹2.08 Cr*", towerOrFloor: "C2 Tower" }],
+    totalUnits: "1,000+ Registries Done · 1,250+ Possessions Offered",
+    possessionDate: "Ready to Move · Ongoing Handover",
+    brochureUrl: "/brochures/rishita-manhattan-brochure.pdf",
+    connectivity: [
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "2 mins" },
+      { landmark: "Phoenix Palassio Mall", distanceOrTime: "3 mins" },
+      { landmark: "Police Headquarters (Signature Building)", distanceOrTime: "4 mins" },
+      { landmark: "Medanta Super Speciality Hospital", distanceOrTime: "6 mins" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "15 mins" },
+      { landmark: "Hazratganj City Centre", distanceOrTime: "18 mins" },
+    ],
+    specifications: [
+      {
+        category: "Architecture",
+        details:
+          "Manhattan New York inspired architectural elevation with classic stone and modern curtain glazing",
+      },
+      {
+        category: "Central Greens",
+        details:
+          "Manhattan Central Park themed green landscaping, musical fountains and artistic sculptures",
+      },
+      {
+        category: "Club Manhattan",
+        details:
+          "Grand clubhouse with Olympic-size swimming pool, yoga lawn, badminton court, and mini theatre",
+      },
+      {
+        category: "Security",
+        details: "Multi-tier 24/7 security with RFID boom barriers and CCTV perimeter coverage",
+      },
+    ],
+    totalUnits: "1,000+ Registries Done · 1,250+ Possessions Offered",
+    possessionDate: "Ready to Move · Ongoing Handover",
+    brochureUrl: "/brochures/rishita-manhattan-brochure.pdf",
+    connectivity: [
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "2 mins" },
+      { landmark: "Phoenix Palassio Mall", distanceOrTime: "3 mins" },
+      { landmark: "Police Headquarters (Signature Building)", distanceOrTime: "4 mins" },
+      { landmark: "Medanta Super Speciality Hospital", distanceOrTime: "6 mins" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "15 mins" },
+      { landmark: "Hazratganj City Centre", distanceOrTime: "18 mins" },
+    ],
+    specifications: [
+      {
+        category: "Architecture",
+        details:
+          "Manhattan New York inspired architectural elevation with classic stone and modern curtain glazing",
+      },
+      {
+        category: "Central Greens",
+        details:
+          "Manhattan Central Park themed green landscaping, musical fountains and artistic sculptures",
+      },
+      {
+        category: "Club Manhattan",
+        details:
+          "Grand clubhouse with Olympic-size swimming pool, yoga lawn, badminton court, and mini theatre",
+      },
+      {
+        category: "Security",
+        details: "Multi-tier 24/7 security with RFID boom barriers and CCTV perimeter coverage",
+      },
+    ],
     rera: "UPRERAPRJ6682 (Phase 1) / UPRERAPRJ544612 (Phase 2) / UPRERAPRJ868210 (Phase 3)",
     status: "Ready to Move / Ongoing · 1000+ Registries Done",
     overview:
@@ -446,6 +674,46 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Villas",
     configurations: ["Luxury Independent Villas"],
+    acreage: "Part of 21.45-acre Mulberry master development",
+    possessionDate: "Delivered / Ready for Possession",
+    brochureUrl: "/brochures/rishita-mulberry-villas-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Golf Course", distanceOrTime: "Walking Distance" },
+      { landmark: "Medanta Hospital", distanceOrTime: "3 mins" },
+      { landmark: "Lulu Mall", distanceOrTime: "4 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
+    specifications: [
+      {
+        category: "Structure",
+        details: "Independent multi-level RCC framed luxury villa architecture",
+      },
+      {
+        category: "Finishings",
+        details:
+          "Imported marble in living spaces, wooden flooring in master suites, private landscaped lawns",
+      },
+    ],
+    acreage: "Part of 21.45-acre Mulberry master development",
+    possessionDate: "Delivered / Ready for Possession",
+    brochureUrl: "/brochures/rishita-mulberry-villas-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Golf Course", distanceOrTime: "Walking Distance" },
+      { landmark: "Medanta Hospital", distanceOrTime: "3 mins" },
+      { landmark: "Lulu Mall", distanceOrTime: "4 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
+    specifications: [
+      {
+        category: "Structure",
+        details: "Independent multi-level RCC framed luxury villa architecture",
+      },
+      {
+        category: "Finishings",
+        details:
+          "Imported marble in living spaces, wooden flooring in master suites, private landscaped lawns",
+      },
+    ],
     rera: "Delivered Project · RERA Phase Completed",
     status: "Delivered",
     overview:
@@ -490,15 +758,61 @@ export const PROJECTS: Project[] = [
       "3 BHK (Cassia)",
       "4 BHK + Servant (Cassia)",
     ],
-    price: "₹87 lakh onwards* (Cassia) · Plots on Request",
-    priceDetails: [
+    acreage: "42 Acres Integrated Hi-Tech Township",
+    totalUnits: "350+ Plotted Units & 8 Towers (Cassia Enclave, Silver Birch)",
+    possessionDate: "Ongoing & Ready Possession Phases",
+    brochureUrl: "/brochures/omaxe-metro-city-brochure.pdf",
+    connectivity: [
+      { landmark: "SGPGI Medical Institute", distanceOrTime: "5 mins" },
+      { landmark: "Amar Shaheed Path Corridor", distanceOrTime: "2 mins" },
+      { landmark: "Lucknow Outer Ring Road / Kisan Path", distanceOrTime: "Direct Link" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "10-12 mins" },
+      { landmark: "Charbagh Railway Station", distanceOrTime: "18 mins" },
+    ],
+    specifications: [
       {
-        unitType: "Cassia Residences",
-        price: "₹87 lakh onwards*",
-        size: "2 BHK+Study to 4 BHK+Servant",
+        category: "Township Infrastructure",
+        details:
+          "Underground electrical cables, wide asphalt sector roads, sewage treatment plant (STP), and rainwater harvesting",
       },
-      { unitType: "Residential Plots", price: "Contact JPS Real Estates for latest details." },
-      { unitType: "Commercial Plots", price: "Contact JPS Real Estates for latest details." },
+      {
+        category: "Township Security",
+        details:
+          "Gated access security with boom barriers, 24/7 CCTV vigilance, and perimeter boundary wall",
+      },
+      {
+        category: "Clubhouse",
+        details:
+          "Exclusive clubhouse with swimming pool, sports courts, banquet hall, and daily retail market",
+      },
+    ],
+    acreage: "42 Acres Integrated Hi-Tech Township",
+    totalUnits: "350+ Plotted Units & 8 Towers (Cassia Enclave, Silver Birch)",
+    possessionDate: "Ongoing & Ready Possession Phases",
+    brochureUrl: "/brochures/omaxe-metro-city-brochure.pdf",
+    connectivity: [
+      { landmark: "SGPGI Medical Institute", distanceOrTime: "5 mins" },
+      { landmark: "Amar Shaheed Path Corridor", distanceOrTime: "2 mins" },
+      { landmark: "Lucknow Outer Ring Road / Kisan Path", distanceOrTime: "Direct Link" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "10-12 mins" },
+      { landmark: "Charbagh Railway Station", distanceOrTime: "18 mins" },
+    ],
+    specifications: [
+      {
+        category: "Township Infrastructure",
+        details:
+          "Underground electrical cables, wide asphalt sector roads, sewage treatment plant (STP), and rainwater harvesting",
+      },
+      {
+        category: "Township Security",
+        details:
+          "Gated access security with boom barriers, 24/7 CCTV vigilance, and perimeter boundary wall",
+      },
+      {
+        category: "Clubhouse",
+        details:
+          "Exclusive clubhouse with swimming pool, sports courts, banquet hall, and daily retail market",
+      },
     ],
     rera: "UPRERAPRJ166763/08/2024 / UPRERAPRJ344049/7/2024",
     status: "Ongoing Township Development",
@@ -574,6 +888,54 @@ export const PROJECTS: Project[] = [
       "Corporate Office Spaces",
       "Luxury Studio Apartments",
     ],
+    possessionDate: "Under Active Development & Leasing",
+    brochureUrl: "/brochures/omaxe-betogether-brochure.pdf",
+    connectivity: [
+      { landmark: "Chaudhary Charan Singh Airport (Amausi Hub)", distanceOrTime: "2 mins" },
+      { landmark: "Vibhuti Khand Gomti Nagar (Commercial CBD)", distanceOrTime: "Immediate" },
+      { landmark: "Ekana Stadium & Shaheed Path (Extension Hub)", distanceOrTime: "3 mins" },
+    ],
+    specifications: [
+      {
+        category: "Facade",
+        details:
+          "Modern high-visibility double-height glass retail facade with dynamic LED signage provisions",
+      },
+      {
+        category: "Internal Circulation",
+        details:
+          "Spacious central atriums, automated escalators, and dedicated goods/service elevators",
+      },
+      {
+        category: "Parking & Utilities",
+        details:
+          "Multi-level basement parking with valet capacity, 100% DG power backup, central HVAC in common corridors",
+      },
+    ],
+    possessionDate: "Under Active Development & Leasing",
+    brochureUrl: "/brochures/omaxe-betogether-brochure.pdf",
+    connectivity: [
+      { landmark: "Chaudhary Charan Singh Airport (Amausi Hub)", distanceOrTime: "2 mins" },
+      { landmark: "Vibhuti Khand Gomti Nagar (Commercial CBD)", distanceOrTime: "Immediate" },
+      { landmark: "Ekana Stadium & Shaheed Path (Extension Hub)", distanceOrTime: "3 mins" },
+    ],
+    specifications: [
+      {
+        category: "Facade",
+        details:
+          "Modern high-visibility double-height glass retail facade with dynamic LED signage provisions",
+      },
+      {
+        category: "Internal Circulation",
+        details:
+          "Spacious central atriums, automated escalators, and dedicated goods/service elevators",
+      },
+      {
+        category: "Parking & Utilities",
+        details:
+          "Multi-level basement parking with valet capacity, 100% DG power backup, central HVAC in common corridors",
+      },
+    ],
     rera: "Registered Phase-wise per Commercial Project",
     status: "Ongoing Commercial Platform",
     overview:
@@ -616,7 +978,22 @@ export const PROJECTS: Project[] = [
     location: "Gomti Nagar Extension, Lucknow",
     category: "Apartments",
     configurations: ["3 BHK Residences", "4 BHK Residences", "Penthouses"],
-    price: "₹2.79 Cr onwards*",
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/omaxe-the-resort-brochure.pdf",
+    connectivity: [
+      { landmark: "Gomti Riverfront Park", distanceOrTime: "Fronting River Promenade" },
+      { landmark: "Shaheed Path Junction", distanceOrTime: "4 mins" },
+      { landmark: "Phoenix Palassio", distanceOrTime: "5 mins" },
+      { landmark: "Airport", distanceOrTime: "18 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/omaxe-the-resort-brochure.pdf",
+    connectivity: [
+      { landmark: "Gomti Riverfront Park", distanceOrTime: "Fronting River Promenade" },
+      { landmark: "Shaheed Path Junction", distanceOrTime: "4 mins" },
+      { landmark: "Phoenix Palassio", distanceOrTime: "5 mins" },
+      { landmark: "Airport", distanceOrTime: "18 mins" },
+    ],
     rera: "UPRERAPRJ326163",
     status: "Under Construction",
     overview:
@@ -655,6 +1032,22 @@ export const PROJECTS: Project[] = [
     location: "Gomti Nagar Extension, Lucknow",
     category: "Apartments",
     configurations: ["3 BHK", "3 BHK + Servant"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/omaxe-waterscapes-brochure.pdf",
+    connectivity: [
+      { landmark: "Gomti Nagar Extension", distanceOrTime: "Prime Sector 7" },
+      { landmark: "Ekana Cricket Stadium", distanceOrTime: "3 mins" },
+      { landmark: "Phoenix Palassio", distanceOrTime: "4 mins" },
+      { landmark: "Medanta Hospital", distanceOrTime: "7 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/omaxe-waterscapes-brochure.pdf",
+    connectivity: [
+      { landmark: "Gomti Nagar Extension", distanceOrTime: "Prime Sector 7" },
+      { landmark: "Ekana Cricket Stadium", distanceOrTime: "3 mins" },
+      { landmark: "Phoenix Palassio", distanceOrTime: "4 mins" },
+      { landmark: "Medanta Hospital", distanceOrTime: "7 mins" },
+    ],
     rera: "UPRERAPRJ1538 / UPRERAPRJ1263",
     status: "Established / Ready to Move",
     overview:
@@ -688,6 +1081,20 @@ export const PROJECTS: Project[] = [
     location: "Gomti Nagar Extension, Lucknow",
     category: "Apartments",
     configurations: ["1 BHK", "2 BHK", "3 BHK", "Penthouses"],
+    possessionDate: "Ready to Move",
+    brochureUrl: "/brochures/hazratganj-residency-brochure.pdf",
+    connectivity: [
+      { landmark: "Hazratganj Commercial Core", distanceOrTime: "Walking Distance" },
+      { landmark: "Charbagh Railway Station", distanceOrTime: "10 mins" },
+      { landmark: "Vidhan Sabha / Secretariat", distanceOrTime: "5 mins" },
+    ],
+    possessionDate: "Ready to Move",
+    brochureUrl: "/brochures/hazratganj-residency-brochure.pdf",
+    connectivity: [
+      { landmark: "Hazratganj Commercial Core", distanceOrTime: "Walking Distance" },
+      { landmark: "Charbagh Railway Station", distanceOrTime: "10 mins" },
+      { landmark: "Vidhan Sabha / Secretariat", distanceOrTime: "5 mins" },
+    ],
     rera: "UPRERAPRJ2050",
     status: "Established / Delivered",
     overview:
@@ -721,6 +1128,20 @@ export const PROJECTS: Project[] = [
     location: "Gomti Nagar Extension, Lucknow",
     category: "Apartments",
     configurations: ["2 BHK", "3 BHK", "3 BHK + Servant"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/omaxe-residency-ii-brochure.pdf",
+    connectivity: [
+      { landmark: "Sector 7 Gomti Nagar Extension", distanceOrTime: "Immediate" },
+      { landmark: "Shaheed Path", distanceOrTime: "3 mins" },
+      { landmark: "Airport", distanceOrTime: "16 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/omaxe-residency-ii-brochure.pdf",
+    connectivity: [
+      { landmark: "Sector 7 Gomti Nagar Extension", distanceOrTime: "Immediate" },
+      { landmark: "Shaheed Path", distanceOrTime: "3 mins" },
+      { landmark: "Airport", distanceOrTime: "16 mins" },
+    ],
     rera: "UPRERAPRJ1682 / UPRERAPRJ1720 / UPRERAPRJ368818",
     status: "Delivered / Established Community",
     overview:
@@ -760,7 +1181,88 @@ export const PROJECTS: Project[] = [
       "D17, Pocket, Pintail Park City, 2, Sultanpur Road, Sector 4, Gomti Nagar, Lucknow, Uttar Pradesh 226010",
     category: "Township",
     configurations: ["Premium Residential Plots", "Luxury Villas"],
-    price: "₹1.16 Cr onwards*",
+    acreage: "200-Acre Integrated Smart Township by Pintail Infracon LLP",
+    launchDate: "12-03-2018",
+    possessionDate: "Under Active Development & Phased Handover",
+    brochureUrl: "/brochures/pintail-park-city-brochure.pdf",
+    connectivity: [
+      { landmark: "Lucknow IT City (HCL SEZ Campus)", distanceOrTime: "2 mins" },
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "5 mins" },
+      { landmark: "Shaan-E-Awadh Shopping Complex & Tower", distanceOrTime: "5 mins" },
+      {
+        landmark: "Super-Specialty Cancer Hospital & Research Institute",
+        distanceOrTime: "3 mins",
+      },
+      { landmark: "Police & PSC Training Academy", distanceOrTime: "3 mins" },
+      {
+        landmark: "Mother Dairy / Amul Automated Processing Plant",
+        distanceOrTime: "Direct Proximity",
+      },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "15 mins" },
+    ],
+    specifications: [
+      {
+        category: "Township Master Plan",
+        details:
+          "200-acre smart integrated township with 45-meter and 24-meter wide internal sector boulevards",
+      },
+      {
+        category: "Recreation & Club",
+        details:
+          "Grand clubhouse with swimming pool, indoor sports lounge (carrom, snooker, table tennis), and fitness gym",
+      },
+      {
+        category: "Security & Safety",
+        details:
+          "24/7 CCTV surveillance across sector roads, boundary walled township with controlled access checkpoints",
+      },
+      {
+        category: "Civil Utilities",
+        details:
+          "Underground electrical conduits, street lighting, scientific sewage network, and rainwater replenishment pits",
+      },
+    ],
+    acreage: "200-Acre Integrated Smart Township by Pintail Infracon LLP",
+    launchDate: "12-03-2018",
+    possessionDate: "Under Active Development & Phased Handover",
+    brochureUrl: "/brochures/pintail-park-city-brochure.pdf",
+    connectivity: [
+      { landmark: "Lucknow IT City (HCL SEZ Campus)", distanceOrTime: "2 mins" },
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "5 mins" },
+      { landmark: "Shaan-E-Awadh Shopping Complex & Tower", distanceOrTime: "5 mins" },
+      {
+        landmark: "Super-Specialty Cancer Hospital & Research Institute",
+        distanceOrTime: "3 mins",
+      },
+      { landmark: "Police & PSC Training Academy", distanceOrTime: "3 mins" },
+      {
+        landmark: "Mother Dairy / Amul Automated Processing Plant",
+        distanceOrTime: "Direct Proximity",
+      },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "15 mins" },
+    ],
+    specifications: [
+      {
+        category: "Township Master Plan",
+        details:
+          "200-acre smart integrated township with 45-meter and 24-meter wide internal sector boulevards",
+      },
+      {
+        category: "Recreation & Club",
+        details:
+          "Grand clubhouse with swimming pool, indoor sports lounge (carrom, snooker, table tennis), and fitness gym",
+      },
+      {
+        category: "Security & Safety",
+        details:
+          "24/7 CCTV surveillance across sector roads, boundary walled township with controlled access checkpoints",
+      },
+      {
+        category: "Civil Utilities",
+        details:
+          "Underground electrical conduits, street lighting, scientific sewage network, and rainwater replenishment pits",
+      },
+    ],
     rera: "UPRERAPRJ15457 (Promoter: PINTAIL INFRACON LLP, Agent: UPRERAAGT000525/04/2026, Launch: 12-03-2018)",
     status: "Ongoing Plotted & Villa Township",
     overview:
@@ -825,7 +1327,60 @@ export const PROJECTS: Project[] = [
     address: "Gomti Greens, Amar Shaheed Path Link, Gomti Nagar Extension, Lucknow, UP",
     category: "Plots",
     configurations: ["Residential Plots"],
-    price: "On Request*",
+    acreage: "Master-Planned LDA Approved Township",
+    possessionDate: "Ready for Possession & Registry",
+    brochureUrl: "/brochures/gomti-greens-plots-brochure.pdf",
+    connectivity: [
+      { landmark: "Amar Shaheed Path Corridor", distanceOrTime: "3 mins" },
+      { landmark: "Medanta Super Speciality Hospital", distanceOrTime: "5 mins" },
+      { landmark: "Phoenix Palassio & Ekana Stadium", distanceOrTime: "6 mins" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "15 mins" },
+      { landmark: "Charbagh Railway Station", distanceOrTime: "20 mins" },
+    ],
+    specifications: [
+      {
+        category: "Approvals",
+        details:
+          "Fully approved by Lucknow Development Authority (LDA) with clear freehold ownership",
+      },
+      {
+        category: "Infrastructure",
+        details:
+          "Emaar international engineering standards: underground power cables, storm water drains, and municipal water supply",
+      },
+      {
+        category: "Roads & Greens",
+        details:
+          "Paved broad internal roads with tree-lined pedestrian footpaths and manicured neighborhood parks",
+      },
+    ],
+    acreage: "Master-Planned LDA Approved Township",
+    possessionDate: "Ready for Possession & Registry",
+    brochureUrl: "/brochures/gomti-greens-plots-brochure.pdf",
+    connectivity: [
+      { landmark: "Amar Shaheed Path Corridor", distanceOrTime: "3 mins" },
+      { landmark: "Medanta Super Speciality Hospital", distanceOrTime: "5 mins" },
+      { landmark: "Phoenix Palassio & Ekana Stadium", distanceOrTime: "6 mins" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "15 mins" },
+      { landmark: "Charbagh Railway Station", distanceOrTime: "20 mins" },
+    ],
+    specifications: [
+      {
+        category: "Approvals",
+        details:
+          "Fully approved by Lucknow Development Authority (LDA) with clear freehold ownership",
+      },
+      {
+        category: "Infrastructure",
+        details:
+          "Emaar international engineering standards: underground power cables, storm water drains, and municipal water supply",
+      },
+      {
+        category: "Roads & Greens",
+        details:
+          "Paved broad internal roads with tree-lined pedestrian footpaths and manicured neighborhood parks",
+      },
+    ],
     rera: "UPRERAPRJ5635",
     status: "LDA Approved Township",
     overview:
@@ -835,7 +1390,7 @@ export const PROJECTS: Project[] = [
       "Cohesive urban design with unified signage and aesthetic road lighting",
       "Common landscape green area spread across the entire township",
       "Landscaped boulevards and wide internal asphalt roads",
-      "Prices From: On Request as officially verified from Emaar India",
+      "Comprehensive master-planned plots approved by Lucknow Development Authority",
     ],
     amenities: [
       "Gated Community Security & Surveillance",
@@ -872,6 +1427,20 @@ export const PROJECTS: Project[] = [
     address: "Sector 7, Gomti Greens, Gomti Nagar Extension, Lucknow",
     category: "Apartments",
     configurations: ["3 BHK Residences", "4 BHK Residences"],
+    possessionDate: "Under Construction · Premium Emaar Enclave",
+    brochureUrl: "/brochures/elite-oasis-brochure.pdf",
+    connectivity: [
+      { landmark: "Gomti Nagar Extension", distanceOrTime: "Prime Sector" },
+      { landmark: "Shaheed Path", distanceOrTime: "3 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
+    possessionDate: "Under Construction · Premium Emaar Enclave",
+    brochureUrl: "/brochures/elite-oasis-brochure.pdf",
+    connectivity: [
+      { landmark: "Gomti Nagar Extension", distanceOrTime: "Prime Sector" },
+      { landmark: "Shaheed Path", distanceOrTime: "3 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
     rera: "UPRERAPRJ944123/02/2025",
     status: "Ongoing Development",
     overview:
@@ -918,13 +1487,75 @@ export const PROJECTS: Project[] = [
       "3rd Floor Business Suites",
       "Grand Food Court",
     ],
-    price: "₹9,990/- Sq.Ft. onwards*",
-    priceDetails: [
-      { unitType: "3rd Floor", price: "₹9,990/- Sq.Ft.*" },
-      { unitType: "2nd Floor", price: "₹9,990/- Sq.Ft.*" },
-      { unitType: "1st Floor", price: "₹12,990/- Sq.Ft.*" },
-      { unitType: "Lower Ground Floor", price: "₹13,990/- Sq.Ft.*" },
-      { unitType: "Ground Floor", price: "₹17,990/- Sq.Ft.*" },
+    possessionDate: "Under Active Construction · Booking Open",
+    brochureUrl: "/brochures/migsun-lucknow-central-brochure.pdf",
+    connectivity: [
+      {
+        landmark: "Medanta Super Speciality Hospital",
+        distanceOrTime: "Direct Adjacency (Zero-minute walk)",
+      },
+      { landmark: "Amar Shaheed Path", distanceOrTime: "Direct Frontage with Dedicated Slip Road" },
+      { landmark: "Lulu Mall Lucknow", distanceOrTime: "2 mins" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "10 mins" },
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "4 mins" },
+      { landmark: "Decathlon Sports Hub", distanceOrTime: "2 mins" },
+    ],
+    specifications: [
+      {
+        category: "Retail Architecture",
+        details:
+          "Stunning high-street commercial architecture with triple-height glass frontage and maximum road visibility",
+      },
+      {
+        category: "Grand Food Court",
+        details:
+          "Massive 500+ seating capacity themed international grand food court with premium restaurant anchors",
+      },
+      {
+        category: "Circulation & Parking",
+        details:
+          "Multiple escalators, high-speed passenger elevators, and multi-level basement car parking",
+      },
+      {
+        category: "Power & Systems",
+        details:
+          "100% generator power backup, central air-conditioning in public atriums, and advanced fire safety systems",
+      },
+    ],
+    possessionDate: "Under Active Construction · Booking Open",
+    brochureUrl: "/brochures/migsun-lucknow-central-brochure.pdf",
+    connectivity: [
+      {
+        landmark: "Medanta Super Speciality Hospital",
+        distanceOrTime: "Direct Adjacency (Zero-minute walk)",
+      },
+      { landmark: "Amar Shaheed Path", distanceOrTime: "Direct Frontage with Dedicated Slip Road" },
+      { landmark: "Lulu Mall Lucknow", distanceOrTime: "2 mins" },
+      { landmark: "Chaudhary Charan Singh International Airport", distanceOrTime: "10 mins" },
+      { landmark: "Ekana International Cricket Stadium", distanceOrTime: "4 mins" },
+      { landmark: "Decathlon Sports Hub", distanceOrTime: "2 mins" },
+    ],
+    specifications: [
+      {
+        category: "Retail Architecture",
+        details:
+          "Stunning high-street commercial architecture with triple-height glass frontage and maximum road visibility",
+      },
+      {
+        category: "Grand Food Court",
+        details:
+          "Massive 500+ seating capacity themed international grand food court with premium restaurant anchors",
+      },
+      {
+        category: "Circulation & Parking",
+        details:
+          "Multiple escalators, high-speed passenger elevators, and multi-level basement car parking",
+      },
+      {
+        category: "Power & Systems",
+        details:
+          "100% generator power backup, central air-conditioning in public atriums, and advanced fire safety systems",
+      },
     ],
     rera: "UPRERAPRJ589752/04/2024 (Agent: UPRERAAGT25307)",
     status: "Booking Open · Ongoing Construction",
@@ -986,6 +1617,24 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Villas",
     configurations: ["4 BHK Luxury Villas"],
+    acreage: "Prime Enclave within 3,530-Acre Sushant Golf City",
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/palm-ville-brochure.pdf",
+    connectivity: [
+      { landmark: "18-Hole Championship Golf Course", distanceOrTime: "2 mins" },
+      { landmark: "Medanta Hospital", distanceOrTime: "4 mins" },
+      { landmark: "Lulu Mall", distanceOrTime: "5 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
+    acreage: "Prime Enclave within 3,530-Acre Sushant Golf City",
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/palm-ville-brochure.pdf",
+    connectivity: [
+      { landmark: "18-Hole Championship Golf Course", distanceOrTime: "2 mins" },
+      { landmark: "Medanta Hospital", distanceOrTime: "4 mins" },
+      { landmark: "Lulu Mall", distanceOrTime: "5 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
     rera: "Phase details to confirm",
     status: "Established Villa Enclave",
     overview:
@@ -1019,6 +1668,20 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Apartments",
     configurations: ["2 BHK", "3 BHK", "4 BHK Apartments"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/celebrity-greens-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Core", distanceOrTime: "Direct" },
+      { landmark: "Medanta Hospital", distanceOrTime: "4 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/celebrity-greens-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Core", distanceOrTime: "Direct" },
+      { landmark: "Medanta Hospital", distanceOrTime: "4 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
     rera: "UPRERAPRJ8838 / UPRERAPRJ3405",
     status: "Established Community",
     overview:
@@ -1052,6 +1715,20 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Apartments",
     configurations: ["Residential Apartments"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/celebrity-meadows-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Core", distanceOrTime: "Direct" },
+      { landmark: "Ekana Stadium", distanceOrTime: "6 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/celebrity-meadows-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Core", distanceOrTime: "Direct" },
+      { landmark: "Ekana Stadium", distanceOrTime: "6 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
     rera: "UPRERAPRJ3206 / UPRERAPRJ5602",
     status: "Established Community",
     overview:
@@ -1085,6 +1762,13 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Apartments",
     configurations: ["Residential Apartments"],
+    possessionDate: "Under Construction / Finishing",
+    brochureUrl: "/brochures/golf-gateway-towers-brochure.pdf",
+    connectivity: [
+      { landmark: "Main Entry Boulevard of Sushant Golf City", distanceOrTime: "Direct Frontage" },
+      { landmark: "Shaheed Path", distanceOrTime: "1 min" },
+      { landmark: "Medanta", distanceOrTime: "3 mins" },
+    ],
     rera: "UPRERAPRJ3331",
     status: "Established",
     overview:
@@ -1112,6 +1796,20 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Apartments",
     configurations: ["Residential Apartments"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/golf-vista-brochure.pdf",
+    connectivity: [
+      { landmark: "18-Hole Golf Course", distanceOrTime: "Overlooking Fairways" },
+      { landmark: "Lulu Mall", distanceOrTime: "4 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/golf-vista-brochure.pdf",
+    connectivity: [
+      { landmark: "18-Hole Golf Course", distanceOrTime: "Overlooking Fairways" },
+      { landmark: "Lulu Mall", distanceOrTime: "4 mins" },
+      { landmark: "Airport", distanceOrTime: "15 mins" },
+    ],
     rera: "UPRERAPRJ5801",
     status: "Established",
     overview:
@@ -1145,6 +1843,18 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Apartments",
     configurations: ["Residential Apartments"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/bliss-delight-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City", distanceOrTime: "Direct" },
+      { landmark: "Medanta Hospital", distanceOrTime: "5 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/bliss-delight-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City", distanceOrTime: "Direct" },
+      { landmark: "Medanta Hospital", distanceOrTime: "5 mins" },
+    ],
     rera: "UPRERAPRJ4754",
     status: "Established",
     overview:
@@ -1172,6 +1882,18 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Villas",
     configurations: ["Independent Luxury Villas"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/larchwood-villa-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Golf Course", distanceOrTime: "3 mins" },
+      { landmark: "Sultanpur Highway", distanceOrTime: "2 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/larchwood-villa-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Golf Course", distanceOrTime: "3 mins" },
+      { landmark: "Sultanpur Highway", distanceOrTime: "2 mins" },
+    ],
     rera: "Confirm phase registration",
     status: "Established Villa Enclave",
     overview:
@@ -1199,6 +1921,18 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Apartments",
     configurations: ["Residential Apartments"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/akanksha-enclave-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Sector B", distanceOrTime: "Direct" },
+      { landmark: "Walmart Best Price", distanceOrTime: "3 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/akanksha-enclave-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Sector B", distanceOrTime: "Direct" },
+      { landmark: "Walmart Best Price", distanceOrTime: "3 mins" },
+    ],
     rera: "Confirm phase registration",
     status: "Established Community",
     overview:
@@ -1226,6 +1960,18 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Apartments",
     configurations: ["Residential Apartments"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/serene-lakeview-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Lake Precinct", distanceOrTime: "Lake Facing" },
+      { landmark: "Medanta", distanceOrTime: "4 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/serene-lakeview-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Lake Precinct", distanceOrTime: "Lake Facing" },
+      { landmark: "Medanta", distanceOrTime: "4 mins" },
+    ],
     rera: "Confirm phase registration",
     status: "Established Community",
     overview:
@@ -1253,6 +1999,18 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Apartments",
     configurations: ["Residential Apartments"],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/basera-enclave-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Arterial Access", distanceOrTime: "Direct" },
+      { landmark: "Shaheed Path", distanceOrTime: "4 mins" },
+    ],
+    possessionDate: "Delivered / Ready to Move",
+    brochureUrl: "/brochures/basera-enclave-brochure.pdf",
+    connectivity: [
+      { landmark: "Sushant Golf City Arterial Access", distanceOrTime: "Direct" },
+      { landmark: "Shaheed Path", distanceOrTime: "4 mins" },
+    ],
     rera: "Confirm phase registration",
     status: "Established Community",
     overview:
@@ -1280,6 +2038,18 @@ export const PROJECTS: Project[] = [
     location: "Sushant Golf City, Lucknow",
     category: "Commercial",
     configurations: ["Commercial & Corporate Offices"],
+    possessionDate: "Operational / Ready for Fitouts",
+    brochureUrl: "/brochures/ansal-business-park-2-brochure.pdf",
+    connectivity: [
+      { landmark: "Amar Shaheed Path Corridor", distanceOrTime: "Direct Frontage" },
+      { landmark: "Airport", distanceOrTime: "12 mins" },
+    ],
+    possessionDate: "Operational / Ready for Fitouts",
+    brochureUrl: "/brochures/ansal-business-park-2-brochure.pdf",
+    connectivity: [
+      { landmark: "Amar Shaheed Path Corridor", distanceOrTime: "Direct Frontage" },
+      { landmark: "Airport", distanceOrTime: "12 mins" },
+    ],
     rera: "Confirm registration and current status",
     status: "Commercial Development",
     overview:
@@ -1317,6 +2087,20 @@ export const PROJECTS: Project[] = [
     location: "Kisan Path, near New Jail Road, Lucknow",
     category: "Plots",
     configurations: ["Residential Plots"],
+    possessionDate: "Active Plotted Development & Registries",
+    brochureUrl: "/brochures/gomti-green-city-brochure.pdf",
+    connectivity: [
+      { landmark: "Kisan Path / Outer Ring Road", distanceOrTime: "Direct Arterial Link" },
+      { landmark: "New Jail Road Corridor", distanceOrTime: "2 mins" },
+      { landmark: "Faizabad Road / Ayodhya Highway", distanceOrTime: "10 mins" },
+    ],
+    possessionDate: "Active Plotted Development & Registries",
+    brochureUrl: "/brochures/gomti-green-city-brochure.pdf",
+    connectivity: [
+      { landmark: "Kisan Path / Outer Ring Road", distanceOrTime: "Direct Arterial Link" },
+      { landmark: "New Jail Road Corridor", distanceOrTime: "2 mins" },
+      { landmark: "Faizabad Road / Ayodhya Highway", distanceOrTime: "10 mins" },
+    ],
     rera: "UPRERAPRJ17806",
     status: "Ongoing Plotted Development",
     overview:

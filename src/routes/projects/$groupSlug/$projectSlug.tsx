@@ -7,26 +7,29 @@ import {
   CheckCircle2,
   ChevronRight,
   Compass,
+  Download,
   ExternalLink,
   Eye,
+  FileCheck,
   FileText,
   Home,
   Info,
   Layers,
   MapPin,
   Phone,
+  Printer,
   Ruler,
   Share2,
   ShieldCheck,
   Sparkles,
+  X,
 } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 
 import { ProjectCard } from "@/components/ProjectCard";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getGroupBySlug, getProjectBySlug, getProjectsByGroup } from "@/data/projects";
-import { useLeads } from "@/hooks/use-leads";
 
 export const Route = createFileRoute("/projects/$groupSlug/$projectSlug")({
   head: ({ params }) => {
@@ -89,7 +92,6 @@ function ProjectNotFound() {
 
 function ProjectDetailPage() {
   const { group, project, relatedProjects } = Route.useLoaderData();
-  const { addLead } = useLeads();
 
   // Gallery state: active main image
   const allImages = [project.heroImage, ...(project.galleryImages || [])];
@@ -99,41 +101,8 @@ function ProjectDetailPage() {
   // Selected floor plan preview
   const [activePlanIndex, setActivePlanIndex] = useState(0);
 
-  // Enquiry form local state
-  const [leadName, setLeadName] = useState("");
-  const [leadPhone, setLeadPhone] = useState("");
-  const [leadMessage, setLeadMessage] = useState("");
-  const [leadInterest, setLeadInterest] = useState("Pricing & Site Visit");
-  const [formSubmitting, setFormSubmitting] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formError, setFormError] = useState("");
-
-  async function handleEnquirySubmit(e: FormEvent) {
-    e.preventDefault();
-    if (!leadName || !leadPhone) return;
-    setFormSubmitting(true);
-    setFormError("");
-    try {
-      await addLead({
-        name: leadName,
-        phone: leadPhone,
-        interest: `${leadInterest} — ${project.name}`,
-        message: leadMessage ? `[${project.name}] ${leadMessage}` : `Enquiry for ${project.name}`,
-        source: `project-detail-${project.projectSlug}`,
-      });
-      setFormSubmitted(true);
-      setTimeout(() => {
-        setFormSubmitted(false);
-        setLeadName("");
-        setLeadPhone("");
-        setLeadMessage("");
-      }, 4000);
-    } catch {
-      setFormError("Failed to submit enquiry. Please call us directly at +91 73552 23299.");
-    } finally {
-      setFormSubmitting(false);
-    }
-  }
+  // Brochure modal state
+  const [showBrochure, setShowBrochure] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -250,20 +219,24 @@ function ProjectDetailPage() {
                   <span>{project.address || project.location}</span>
                 </p>
 
-                {/* Pricing Block */}
+                {/* Status & Timeline Overview Block */}
                 <div className="mt-6 rounded-2xl border border-border bg-secondary/40 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    Developer Listed Price
+                  <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+                    Project Status & Timeline
                   </p>
                   <div className="mt-1 flex items-baseline gap-2">
-                    <span className="font-serif text-2xl font-bold text-primary sm:text-3xl">
-                      {project.price ?? "Contact JPS Real Estates for latest details."}
+                    <span className="font-serif text-xl font-bold text-foreground sm:text-2xl">
+                      {project.status}
                     </span>
                   </div>
-                  {project.price && (
-                    <p className="mt-1 text-[11px] text-muted-foreground">
-                      *Starting price as officially published by {project.developer}. Subject to
-                      floor rise, PLC, and registration fees.
+                  {project.possessionDate && (
+                    <p className="mt-1 text-[11px] font-medium text-muted-foreground">
+                      Possession: {project.possessionDate}
+                    </p>
+                  )}
+                  {project.acreage && (
+                    <p className="mt-0.5 text-[11px] text-muted-foreground">
+                      Site Parcel: {project.acreage}
                     </p>
                   )}
                 </div>
@@ -302,15 +275,16 @@ function ProjectDetailPage() {
                 </div>
               </div>
 
-              {/* Quick Contact CTA Buttons */}
+              {/* Quick Actions: Download Brochure CTA Buttons */}
               <div className="mt-6 flex flex-wrap gap-2.5 pt-4">
-                <a
-                  href="#enquire"
+                <button
+                  type="button"
+                  onClick={() => setShowBrochure(true)}
                   className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
                 >
-                  <Phone className="h-4 w-4" />
-                  <span>Enquire / Book Visit</span>
-                </a>
+                  <Download className="h-4 w-4" />
+                  <span>Download Brochure</span>
+                </button>
                 <Link
                   to="/projects/$groupSlug"
                   params={{ groupSlug: group.slug }}
@@ -362,55 +336,55 @@ function ProjectDetailPage() {
               </section>
             )}
 
-            {/* Price Details Breakdown (If Officially Available) */}
-            {project.priceDetails && project.priceDetails.length > 0 && (
+            {/* Connectivity & Location Advantages */}
+            {project.connectivity && project.connectivity.length > 0 && (
               <section className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="font-serif text-2xl font-bold">Official Pricing & Inventory</h2>
-                    <p className="text-xs text-muted-foreground">
-                      Publicly listed rate schedule published by {project.developer}
-                    </p>
-                  </div>
-                  <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                    Verified
-                  </span>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <h2 className="font-serif text-2xl font-bold">Connectivity & Proximity</h2>
                 </div>
-
-                <div className="mt-6 overflow-x-auto">
-                  <table className="w-full text-left text-xs">
-                    <thead>
-                      <tr className="border-b border-border bg-secondary/60">
-                        <th className="px-4 py-3 font-semibold text-foreground">
-                          Unit Configuration
-                        </th>
-                        <th className="px-4 py-3 font-semibold text-foreground">
-                          Super Area / Size
-                        </th>
-                        <th className="px-4 py-3 font-semibold text-foreground">Tower / Floor</th>
-                        <th className="px-4 py-3 font-semibold text-foreground">Starting Price*</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-border">
-                      {project.priceDetails.map((item, idx) => (
-                        <tr key={idx} className="hover:bg-secondary/30">
-                          <td className="px-4 py-3 font-medium text-foreground">{item.unitType}</td>
-                          <td className="px-4 py-3 text-muted-foreground">{item.size || "—"}</td>
-                          <td className="px-4 py-3 text-muted-foreground">
-                            {item.towerOrFloor || "Standard"}
-                          </td>
-                          <td className="px-4 py-3 font-serif font-bold text-primary">
-                            {item.price}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <p className="mt-3 text-[11px] text-muted-foreground">
-                  *Prices as published in official marketing releases. Confirm current availability
-                  and exact payment plans with JPS Real Estates.
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Verified travel times and distance to key Lucknow infrastructure hubs.
                 </p>
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {project.connectivity.map((conn) => (
+                    <div
+                      key={conn.landmark}
+                      className="flex items-center justify-between rounded-xl border border-border/70 bg-secondary/30 p-3.5 text-xs"
+                    >
+                      <span className="font-medium text-foreground">{conn.landmark}</span>
+                      <span className="ml-2 rounded-full bg-primary/10 px-2.5 py-1 font-semibold text-primary shrink-0">
+                        {conn.distanceOrTime}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Technical Specifications */}
+            {project.specifications && project.specifications.length > 0 && (
+              <section className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <Ruler className="h-5 w-5 text-primary" />
+                  <h2 className="font-serif text-2xl font-bold">Architectural Specifications</h2>
+                </div>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Official engineering and civil specifications verified from developer filings.
+                </p>
+                <div className="mt-6 space-y-3">
+                  {project.specifications.map((spec) => (
+                    <div
+                      key={spec.category}
+                      className="rounded-xl border border-border/70 bg-secondary/20 p-4 text-xs"
+                    >
+                      <span className="font-semibold text-primary uppercase tracking-wider text-[11px]">
+                        {spec.category}
+                      </span>
+                      <p className="mt-1 leading-relaxed text-muted-foreground">{spec.details}</p>
+                    </div>
+                  ))}
+                </div>
               </section>
             )}
 
@@ -456,7 +430,7 @@ function ProjectDetailPage() {
                       <img
                         src={project.masterPlanImage.url}
                         alt={project.masterPlanImage.alt}
-                        className="w-full object-contain max-h-[500px]"
+                        className="max-h-[500px] w-full object-contain"
                         loading="lazy"
                       />
                     </div>
@@ -497,7 +471,7 @@ function ProjectDetailPage() {
                         <img
                           src={project.floorPlans[activePlanIndex].image}
                           alt={project.floorPlans[activePlanIndex].alt}
-                          className="w-full object-contain max-h-[500px] rounded-lg bg-white"
+                          className="max-h-[500px] w-full rounded-lg bg-white object-contain"
                           loading="lazy"
                         />
                       </div>
@@ -508,104 +482,80 @@ function ProjectDetailPage() {
             )}
           </div>
 
-          {/* Right Column: Lead Capture Card & Related Projects (4 cols) */}
+          {/* Right Column: Download Brochure Dossier Card & Related Projects (4 cols) */}
           <div className="space-y-8 lg:col-span-4">
-            {/* Integrated Lead Form */}
-            <div id="enquire" className="rounded-2xl border border-border bg-card p-6 shadow-md">
+            {/* Official Project Brochure & Dossier Card */}
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-md">
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                  <Phone className="h-5 w-5" />
+                  <Download className="h-5 w-5" />
                 </span>
                 <div>
-                  <h3 className="font-serif text-lg font-bold">Enquire About This Project</h3>
-                  <p className="text-xs text-muted-foreground">Fast response from Jitendra Singh</p>
+                  <h3 className="font-serif text-lg font-bold">Project Brochure</h3>
+                  <p className="text-xs text-muted-foreground">Official builder dossier</p>
                 </div>
               </div>
 
-              {formSubmitted ? (
-                <div className="mt-6 rounded-xl border border-green-500/30 bg-green-500/10 p-5 text-center text-xs text-green-700 dark:text-green-300">
-                  <CheckCircle2 className="mx-auto h-8 w-8 text-green-600" />
-                  <p className="mt-2 font-semibold">Thank you! Your enquiry has been received.</p>
-                  <p className="mt-1 text-muted-foreground">
-                    JPS Real Estates will contact you shortly with the brochure and pricing details.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleEnquirySubmit} className="mt-6 space-y-3.5">
-                  <div>
-                    <label className="block text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Ramesh Kumar"
-                      value={leadName}
-                      onChange={(e) => setLeadName(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    />
-                  </div>
+              <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                Download the complete official project brochure including architectural floor plans,
+                master layout, UP-RERA registration documents, and amenities guide.
+              </p>
 
-                  <div>
-                    <label className="block text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-                      Phone Number *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="e.g. 98765 43210"
-                      value={leadPhone}
-                      onChange={(e) => setLeadPhone(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    />
-                  </div>
+              <div className="mt-5 space-y-2.5">
+                <button
+                  type="button"
+                  onClick={() => setShowBrochure(true)}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3 text-xs font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
+                >
+                  <Download className="h-4 w-4" />
+                  <span>Download Project Brochure</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowBrochure(true)}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-secondary/50 py-2.5 text-xs font-medium text-foreground hover:bg-secondary"
+                >
+                  <FileText className="h-3.5 w-3.5" />
+                  <span>View Digital Brochure</span>
+                </button>
+              </div>
 
-                  <div>
-                    <label className="block text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-                      Requirement
-                    </label>
-                    <select
-                      value={leadInterest}
-                      onChange={(e) => setLeadInterest(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    >
-                      <option value="Pricing & Site Visit">Pricing & Site Visit</option>
-                      <option value="Brochure & Floor Plans">Brochure & Floor Plans</option>
-                      <option value="Booking Procedure & Allotment">
-                        Booking Procedure & Allotment
-                      </option>
-                      <option value="Resale / Secondary Market">Resale / Secondary Market</option>
-                    </select>
-                  </div>
+              <div className="mt-5 border-t border-border pt-4">
+                <p className="text-[11px] font-semibold text-foreground">Included in Brochure:</p>
+                <ul className="mt-2 space-y-1.5 text-xs text-muted-foreground">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                    <span>Complete Master Plan & Tower Layouts</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                    <span>Unit Dimension Floor Plans & Super Area</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                    <span>UP-RERA Phase Registration Details</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                    <span>Club & Community Amenities Matrix</span>
+                  </li>
+                </ul>
+              </div>
 
-                  <div>
-                    <label className="block text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
-                      Message (Optional)
-                    </label>
-                    <textarea
-                      rows={2}
-                      placeholder={`I'm interested in ${project.name}...`}
-                      value={leadMessage}
-                      onChange={(e) => setLeadMessage(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                    />
-                  </div>
-
-                  {formError && <p className="text-xs text-destructive">{formError}</p>}
-
-                  <button
-                    type="submit"
-                    disabled={formSubmitting}
-                    className="w-full rounded-xl bg-primary py-2.5 text-xs font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90 disabled:opacity-50"
-                  >
-                    {formSubmitting ? "Sending..." : "Submit Project Enquiry"}
-                  </button>
-
-                  <p className="text-center text-[10px] text-muted-foreground">
-                    Direct enquiry sent to JPS Real Estates. No spam.
-                  </p>
-                </form>
-              )}
+              <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-3.5 text-xs">
+                <p className="font-semibold text-foreground">Need Personalized Assistance?</p>
+                <p className="mt-1 text-muted-foreground">
+                  JPS Real Estates provides expert guidance on allotment procedures and verified
+                  property documents.
+                </p>
+                <a
+                  href="tel:+917355223299"
+                  className="mt-3 inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+                >
+                  <Phone className="h-3.5 w-3.5" />
+                  <span>+91 73552 23299</span>
+                </a>
+              </div>
             </div>
 
             {/* Related Projects */}
@@ -631,8 +581,8 @@ function ProjectDetailPage() {
                           {rel.name}
                         </p>
                         <p className="truncate text-[11px] text-muted-foreground">{rel.location}</p>
-                        <p className="text-[11px] font-semibold text-primary">
-                          {rel.price ?? "Contact for details"}
+                        <p className="truncate text-[11px] font-medium text-muted-foreground">
+                          {rel.status}
                         </p>
                       </div>
                     </Link>
@@ -696,14 +646,186 @@ function ProjectDetailPage() {
                 </span>
               </div>
               <p className="mt-2 text-muted-foreground">
-                Pricing, inventory, and phase completions are subject to dynamic changes by the
+                Phase completions and inventory availability are subject to dynamic updates by the
                 developer and regulatory bodies. Visitors should confirm exact terms before making
-                financial commitments.
+                commitments.
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Official Brochure Modal / Print View */}
+      {showBrochure && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm print:relative print:p-0">
+          <div className="relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl border border-border bg-card p-6 shadow-2xl sm:p-8 print:max-h-none print:border-none print:shadow-none">
+            {/* Modal Header Actions */}
+            <div className="mb-6 flex items-center justify-between border-b border-border pb-4 print:hidden">
+              <div className="flex items-center gap-2">
+                <FileCheck className="h-5 w-5 text-primary" />
+                <h3 className="font-serif text-lg font-bold">Official Project Brochure Dossier</h3>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm hover:bg-primary/90"
+                >
+                  <Printer className="h-3.5 w-3.5" />
+                  <span>Print / Save as PDF</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowBrochure(false)}
+                  className="rounded-lg p-1.5 text-muted-foreground hover:bg-secondary hover:text-foreground"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Printable Brochure Document */}
+            <div className="space-y-6">
+              {/* Document Header */}
+              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+                    JPS Real Estates · Verified Real Estate Catalogue
+                  </p>
+                  <h1 className="mt-1 font-serif text-3xl font-bold text-foreground">
+                    {project.name}
+                  </h1>
+                  <p className="text-sm text-muted-foreground">
+                    Developed by {project.developer} · {project.location}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                    {project.status}
+                  </span>
+                  <p className="mt-1 text-[11px] text-muted-foreground">
+                    Verified: {project.lastVerified}
+                  </p>
+                </div>
+              </div>
+
+              {/* Visual Hero */}
+              <div className="overflow-hidden rounded-xl border border-border bg-muted">
+                <img
+                  src={project.heroImage.url}
+                  alt={project.heroImage.alt}
+                  className="max-h-[350px] w-full object-cover"
+                />
+              </div>
+
+              {/* RERA and Official Specs Grid */}
+              <div className="grid grid-cols-2 gap-3 text-xs sm:grid-cols-4">
+                <div className="rounded-xl border border-border bg-secondary/30 p-3">
+                  <span className="text-muted-foreground">Category</span>
+                  <p className="mt-1 font-semibold text-foreground">{project.category}</p>
+                </div>
+                <div className="rounded-xl border border-border bg-secondary/30 p-3">
+                  <span className="text-muted-foreground">Configurations</span>
+                  <p className="mt-1 font-semibold text-foreground">
+                    {project.configurations.join(", ")}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border bg-secondary/30 p-3">
+                  <span className="text-muted-foreground">Site Parcel</span>
+                  <p className="mt-1 font-semibold text-foreground">
+                    {project.acreage ?? "Township Master Plan"}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-border bg-secondary/30 p-3">
+                  <span className="text-muted-foreground">Possession / Status</span>
+                  <p className="mt-1 font-semibold text-foreground">{project.status}</p>
+                </div>
+              </div>
+
+              {/* RERA Compliance Box */}
+              <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 text-xs">
+                <p className="font-semibold text-foreground">UP-RERA Registration Certification</p>
+                <p className="mt-1 font-mono text-muted-foreground">{project.rera}</p>
+                <p className="mt-1 text-[11px] text-muted-foreground">
+                  Site Address: {project.address || project.location}
+                </p>
+              </div>
+
+              {/* Overview */}
+              <div>
+                <h4 className="font-serif text-base font-bold text-foreground">Project Overview</h4>
+                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                  {project.overview}
+                </p>
+              </div>
+
+              {/* Key Connectivity */}
+              {project.connectivity && project.connectivity.length > 0 && (
+                <div>
+                  <h4 className="font-serif text-base font-bold text-foreground">
+                    Location Advantages & Connectivity
+                  </h4>
+                  <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+                    {project.connectivity.map((c) => (
+                      <div
+                        key={c.landmark}
+                        className="flex items-center justify-between rounded-lg border border-border/70 bg-secondary/20 p-2.5"
+                      >
+                        <span className="font-medium text-foreground">{c.landmark}</span>
+                        <span className="font-semibold text-primary">{c.distanceOrTime}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Amenities */}
+              {project.amenities && project.amenities.length > 0 && (
+                <div>
+                  <h4 className="font-serif text-base font-bold text-foreground">
+                    Lifestyle Amenities & Facilities
+                  </h4>
+                  <div className="mt-3 grid grid-cols-2 gap-2 text-xs sm:grid-cols-3">
+                    {project.amenities.map((a) => (
+                      <div
+                        key={a}
+                        className="flex items-center gap-2 rounded-lg border border-border/70 p-2"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span className="truncate">{a}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Master Plan Visual in Brochure */}
+              {project.masterPlanImage && (
+                <div>
+                  <h4 className="font-serif text-base font-bold text-foreground">
+                    Master Layout Plan
+                  </h4>
+                  <div className="mt-2 overflow-hidden rounded-xl border border-border bg-muted">
+                    <img
+                      src={project.masterPlanImage.url}
+                      alt={project.masterPlanImage.alt}
+                      className="max-h-[350px] w-full bg-white object-contain"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Disclaimer / Footer */}
+              <div className="border-t border-border pt-4 text-[11px] text-muted-foreground">
+                <p>
+                  Compiled by JPS Real Estates (Proprietor: Jitendra Singh · Contact: +91 73552
+                  23299). Data sourced from official developer public filings and UP-RERA portals.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <SiteFooter />
     </div>

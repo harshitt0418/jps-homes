@@ -221,8 +221,8 @@ function Index() {
         </Reveal>
         <p className="mb-8 max-w-4xl border-l-2 border-primary pl-4 text-xs leading-relaxed text-muted-foreground">
           Every collection brings together documented developments from that group. Click any
-          collection card to explore all associated properties, verified price lists, floor plans,
-          and UP-RERA phase registrations.
+          collection card to explore all associated properties, verified specifications, floor
+          plans, and UP-RERA phase registrations.
         </p>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

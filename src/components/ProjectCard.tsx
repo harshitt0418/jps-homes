@@ -72,18 +72,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
         </div>
 
-        {/* Card Footer: Price & CTA */}
+        {/* Card Footer: Status & CTA */}
         <div className="mt-5 flex items-center justify-between gap-2 border-t border-border pt-4">
-          <div>
-            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Pricing</p>
-            <p className="font-serif text-base font-bold text-primary">
-              {project.price ?? "Contact JPS for details"}
+          <div className="min-w-0 flex-1">
+            <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
+              Project Status
             </p>
+            <p className="truncate text-xs font-semibold text-foreground">{project.status}</p>
           </div>
           <Link
             to="/projects/$groupSlug/$projectSlug"
             params={{ groupSlug: project.groupSlug, projectSlug: project.projectSlug }}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
           >
             <span>View Details</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
