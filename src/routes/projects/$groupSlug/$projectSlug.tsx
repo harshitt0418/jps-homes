@@ -277,13 +277,21 @@ function ProjectDetailPage() {
 
               {/* Quick Actions: Download Brochure CTA Buttons */}
               <div className="mt-6 flex flex-wrap gap-2.5 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setShowBrochure(true)}
+                <a
+                  href={project.brochureUrl || `/brochures/${project.projectSlug}-brochure.pdf`}
+                  download={`${project.projectSlug}-brochure.pdf`}
                   className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
                 >
                   <Download className="h-4 w-4" />
-                  <span>Download Brochure</span>
+                  <span>Download Brochure (PDF)</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setShowBrochure(true)}
+                  className="inline-flex items-center justify-center rounded-xl border border-border bg-card px-4 py-3 text-xs font-medium text-foreground hover:bg-accent"
+                >
+                  <FileText className="mr-1.5 h-3.5 w-3.5 text-primary" />
+                  <span>View Online</span>
                 </button>
                 <Link
                   to="/projects/$groupSlug"
@@ -531,21 +539,21 @@ function ProjectDetailPage() {
               </p>
 
               <div className="mt-5 space-y-2.5">
-                <button
-                  type="button"
-                  onClick={() => setShowBrochure(true)}
+                <a
+                  href={project.brochureUrl || `/brochures/${project.projectSlug}-brochure.pdf`}
+                  download={`${project.projectSlug}-brochure.pdf`}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3 text-xs font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
                 >
                   <Download className="h-4 w-4" />
-                  <span>Download Project Brochure</span>
-                </button>
+                  <span>Download Official Brochure (PDF)</span>
+                </a>
                 <button
                   type="button"
                   onClick={() => setShowBrochure(true)}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-secondary/50 py-2.5 text-xs font-medium text-foreground hover:bg-secondary"
                 >
                   <FileText className="h-3.5 w-3.5" />
-                  <span>View Digital Brochure</span>
+                  <span>View Digital Brochure Online</span>
                 </button>
               </div>
 
@@ -695,13 +703,21 @@ function ProjectDetailPage() {
                 <h3 className="font-serif text-lg font-bold">Official Project Brochure Dossier</h3>
               </div>
               <div className="flex items-center gap-2">
+                <a
+                  href={project.brochureUrl || `/brochures/${project.projectSlug}-brochure.pdf`}
+                  download={`${project.projectSlug}-brochure.pdf`}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm hover:bg-primary/90"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  <span>Download PDF Document</span>
+                </a>
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm hover:bg-primary/90"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground shadow-sm hover:bg-secondary"
                 >
                   <Printer className="h-3.5 w-3.5" />
-                  <span>Print / Save as PDF</span>
+                  <span>Print View</span>
                 </button>
                 <button
                   type="button"

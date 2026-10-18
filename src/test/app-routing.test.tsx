@@ -101,4 +101,33 @@ describe("Local Project Data Source", () => {
     expect(project?.heroImage.url).toMatch(/^\/assets\/projects\//);
     expect(project?.lastVerified).toBe("2026-10-18");
   });
+
+  it("verifies all projects have valid PDF brochures on disk", async () => {
+    const fs = await import("node:fs");
+    const path = await import("node:path");
+    const projects = getAllProjects();
+
+    for (const project of projects) {
+      expect(project.brochureUrl).toBeDefined();
+      expect(project.brochureUrl).toMatch(/\.pdf$/);
+
+      const filePath = path.resolve(
+        process.cwd(),
+        "public",
+        project.brochureUrl!.replace(/^\//, ""),
+      );
+      expect(fs.existsSync(filePath), `Brochure file should exist: ${filePath}`).toBe(true);
+
+      const buffer = fs.readFileSync(filePath);
+      expect(buffer.length).toBeGreaterThan(1000);
+
+      // Verify PDF magic bytes '%PDF-'
+      const header = buffer.subarray(0, 5).toString("utf-8");
+      expect(header).toBe("%PDF-");
+
+      // Verify PDF terminator '%%EOF'
+      const tail = buffer.subarray(buffer.length - 100).toString("utf-8");
+      expect(tail).toContain("%%EOF");
+    }
+  });
 });
