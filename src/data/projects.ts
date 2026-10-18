@@ -264,6 +264,12 @@ export const PROJECTS: Project[] = [
         isIllustrative: false,
       },
       {
+        url: "/assets/projects/rishita-developers/rishita-mulberry-heights/master-plan.jpg",
+        alt: "Rishita Mulberry Heights master site plan and tower layout with legend",
+        caption: "Official Master Site Plan with Legend",
+        isIllustrative: false,
+      },
+      {
         url: "/assets/projects/rishita-developers/rishita-mulberry-heights/gallery-1.jpg",
         alt: "Rishita Mulberry Heights aerial construction and tower progress",
         caption: "Actual Tower Aerial View",
@@ -288,6 +294,12 @@ export const PROJECTS: Project[] = [
         isIllustrative: false,
       },
     ],
+    masterPlanImage: {
+      url: "/assets/projects/rishita-developers/rishita-mulberry-heights/master-plan.jpg",
+      alt: "Rishita Mulberry Heights official architectural site plan and tower layout with legend",
+      caption: "Official Architectural Site Plan & Layout with Legend",
+      isIllustrative: false,
+    },
     locationMapImage: {
       url: "/assets/projects/rishita-developers/rishita-mulberry-heights/location-map.jpg",
       alt: "Rishita Mulberry Heights strategic location and connectivity map in Sushant Golf City",
