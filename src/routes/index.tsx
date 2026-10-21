@@ -51,6 +51,8 @@ const locations = [
   { name: "Sushant Golf City" },
   { name: "Shaheed Path" },
   { name: "Faizabad Road" },
+  { name: "Kanpur Road" },
+  { name: "Amravati IT City" },
 ];
 
 const services = [
@@ -112,8 +114,10 @@ function Index() {
               className="animate-fade-up mt-5 max-w-xl text-base text-white/85 sm:text-lg"
               style={{ animationDelay: "300ms" }}
             >
-              From premium apartments in Gomti Nagar to gated plots on Faizabad Road — JPS Real
-              Estates guides you to the right property with complete transparency.
+              From premium apartments in Gomti Nagar and gated plots on Faizabad Road to
+              LDA-RERA-approved high-tech, integrated townships near Shaheed Path, adjoining the
+              Sultanpur, Faizabad and Raebareli highways — JPS Real Estates guides you to the right
+              property with complete transparency.
             </p>
             <div
               className="animate-fade-up mt-8 flex flex-wrap gap-3"
