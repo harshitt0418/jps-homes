@@ -23,7 +23,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+        <nav className="hidden items-center gap-8 text-sm font-medium xl:flex">
           <Link to="/" className="text-muted-foreground transition-colors hover:text-primary">
             Home
           </Link>
@@ -74,7 +74,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-accent hover:text-foreground md:hidden"
+            className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:bg-accent hover:text-foreground xl:hidden"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -84,7 +84,7 @@ export function SiteHeader() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="border-b border-border bg-background px-4 py-4 md:hidden">
+        <div className="border-b border-border bg-background px-4 py-4 xl:hidden">
           <nav className="flex flex-col gap-3 text-sm font-medium">
             <Link
               to="/"
