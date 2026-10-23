@@ -108,7 +108,7 @@ function Index() {
               className="animate-fade-up max-w-2xl font-serif text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl"
               style={{ animationDelay: "150ms" }}
             >
-              Find Your Dream Home in the Heart of Lucknow.
+              Find Your Dream Home in the Heart of Lucknow
             </h1>
             <p
               className="animate-fade-up mt-5 max-w-xl text-base text-white/85 sm:text-lg"
